@@ -1,1 +1,52 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo:700, 300');
+
+:root {
+    --colour-black: black;
+    --colour-white: white;
+    --colour-blue: #003BFF;
+    
+    --heading: "Heebo", "Avenir", sans-serif; /*make graphik*/
+    --subheading: "Heebo", "Avenir", sans-serif;
+    --content: "Open Sans", "Helvetica", sans-serif;
+
+    --linespace: 1.5;
+    --padding: 2em;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+::selection {
+    background-color: var(--colour-black);
+    color: var(--colour-white);
+}
+
+html {
+    font: 300 1em/var(--linespace) var(--content);
+    color: var(--white);
+}
+
+h1 {
+    font: 600 3em/var(--linespace) var(--heading);
+}
+
+h2 {
+    font: 600 2em/var(--linespace) var(--heading);
+}
+h3 {
+    font: 300 1.6em/var(--linespace) var(--heading);
+}
+
+h6 {
+    font: 700 0.8em/var(--linespace) var(--subheading);
+}
+
+body {
+    padding: calc( var(--padding) * 1.5);
+}
