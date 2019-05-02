@@ -11,12 +11,20 @@
 
     --linespace: 1.5;
     --padding: 2em;
+    
+    --shadow: 0 0 10px 1px rgba(0,0,0,0.3);
+    
+    --round: 100%;
+    
+    /* z-index */
+    --z-cursor: 1000;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: none !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
@@ -29,7 +37,8 @@
 
 html {
     font: 300 1em/var(--linespace) var(--content);
-    color: var(--white);
+    color: var(--colour-white);
+    height: 100%;
 }
 
 h1 {
@@ -49,4 +58,101 @@ h6 {
 
 body {
     padding: calc( var(--padding) * 1.5);
+    background-color: var(--colour-blue);
+    height: 100%;
+}
+
+.custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    /* mix-blend-mode: difference; */
+    width: 2.6em;
+    height: 2.6em;
+    border-radius: var(--round);
+    border: solid 2px var(--colour-white);
+    background-color: transparent;
+    transition: transform 0.3s ease;
+    transform: translate(-50%, -50%);
+    z-index: var(--z-cursor);
+    box-shadow: var(--shadow);
+}
+.custom-cursor .inner-cursor {
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: var(--round);
+    background-color: var(--colour-white);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transition: inherit;
+    box-shadow: inherit;
+}
+  
+.custom-cursor.link .inner-cursor {
+    transform: translate(-50%, -50%) scale(0.5);
+}
+.custom-cursor.link {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ________________SLIDER STYLES__________________ */
+
+.slide-answer {
+    display: grid;
+    grid-template-columns: repeat(5, max-content);
+    grid-gap: 1em;
+    align-items: center;
+}
+
+.slide-answer h2 {
+    width: 2.4em;
+    height: 2.4em;
+    text-align: center;
+    border: solid 2px transparent;
+    border-radius: var(--round);
+    transition: border 0.3s ease;
+    padding: 0.4em;
+}
+.slide-answer h2.selected {
+    border: solid 2px var(--colour-white);
+}
+
+.slide-answer .trail {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5em;
+}
+.slide-answer .trail div {
+    width: 0.3em;
+    height: 0.3em;
+    background-color: var(--colour-white);
+    opacity: 0.3;
+    border-radius: var(--round);
+}
+
+.slide-answer .slider {
+    width: 2.6em;
+    height: 2.6em;
+    background-color: var(--colour-white);
+    border-radius: var(--round);
+    display: grid;
+    transition: transform 0.3s ease;
+    position: relative;
+    left: 0px;
+}
+.slide-answer .slider:hover {
+    transform: scale(1.1);
+}
+.slide-answer .slider span {
+    color: var(--colour-blue);
+    font-family: "Poppins";
+    font-weight: 500;
+    align-self: center;
+    justify-self: center;
+    font-size: 1.6em;
+    user-select: none;
+    -moz-user-select: none;
+    pointer-events: none;
 }
