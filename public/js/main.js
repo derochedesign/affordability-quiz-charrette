@@ -14,8 +14,8 @@
 //SLIDER FUNCTIONALITY
 const sliderBar = document.getElementById("slider");
 const sliderGrab = document.getElementById("sliderGrab");
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
+const leftA = document.getElementById("no");
+const rightA = document.getElementById("yes");
 let canSlide = false;
 
 const resetSliderGrab = _ => {
@@ -33,22 +33,31 @@ const sliderLogic = e => {
     //get mouse x, consider it 0, then apply difference to sliderGrab
     const mouseXog = (e.type == "mousedown") ? e.clientX : e.touches[0].clientX;
     canSlide = true;
-    console.log("fuck");
     
     (!e.target.style.left) && (e.target.style.left = `0px`);
+    
+    if (!e.target.style.left) {
+        e.target.style.left = `0px`
+    }
     
     const sliderPos = parseInt(e.target.style.left);
     
     const sliderPosition = ev => {
         if (canSlide) {
             const mouseX = (e.type == "mousedown") ? ev.clientX : ev.touches[0].clientX;
-            e.target.style.left = `${sliderPos + (mouseX - mouseXog)}px`;
             
-            if (no.offsetLeft <= sliderGrab.offsetLeft) {
-                no.classList.add("selected");
+            let temp = (mouseX - mouseXog);
+            (temp < 0) && (temp = temp * -1);
+            
+            if (temp <= ((sliderBar.offsetWidth/2) - (sliderGrab.offsetWidth/2) )) {
+                e.target.style.left = `${sliderPos + (mouseX - mouseXog)}px`;
             }
-            else if ( (yes.offsetLeft + yes.offsetWidth) >= (sliderGrab.offsetLeft + sliderGrab.offsetWidth) ) {
-                yes.classList.add("selected");
+            
+            if (rightA.offsetLeft <= sliderGrab.offsetLeft) {
+                rightA.classList.add("selected");
+            }
+            else if ( (leftA.offsetLeft + leftA.offsetWidth) >= (sliderGrab.offsetLeft + sliderGrab.offsetWidth) ) {
+                leftA.classList.add("selected");
             }
             else {
                 let selected = document.querySelectorAll(".slide-answer h2.selected");
@@ -58,7 +67,6 @@ const sliderLogic = e => {
                         one.classList.remove("selected");
                     });
                 }
-                
             }
             
         }
@@ -123,5 +131,25 @@ document.addEventListener("DOMContentLoaded", _ => {
         cursorInit = false;
     };
     
+    const projectView = document.getElementById("projectView");
+    
+    $.getJSON('data/projects.json', function(result) {
+    
+        result.projects.forEach(project => {
+           projectView.innerHTML += projectTemplate(project); 
+        });
+            
+    });
+    
   });
   
+  const projectTemplate = data => {
+      return (
+        `
+        <div style="background-image:url(img/${data.thumb})" class="project">
+            <h3>${data.title}</h3>
+            <h4>${(data.sub == null) ? "" : data.sub}</h4>
+        </div>
+        `
+      )
+  }

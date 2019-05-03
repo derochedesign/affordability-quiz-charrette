@@ -1,0 +1,50 @@
+{
+    "projects":[
+        {
+            "id": 101,
+            "title": "Boost",
+            "sub":"Check it out!",
+            "thumb":"projects/boost/img/thumb.jpg",
+            "authors": [
+                "Name Name",
+                "Name Name"
+            ],
+            "desc": "boost, Ya ya this is a project bro, lets do it.",
+            "link": "https://boostwebsite.com",
+            "gallery": [
+                "projects/boost/img/name.png",
+                "projects/boost/vid/name.mp4"
+            ]
+        },
+        {
+            "id": 102,
+            "title": "Greenbelt",
+            "sub":null,
+            "authors": [
+                "Name Name",
+                "Name Name"
+            ],
+            "desc": "yellow, Ya ya this is a project bro, lets do it.",
+            "link": "https://yellowbelt.com",
+            "gallery": [
+                "projects/yellow/img/name.png",
+                "projects/yellow/vid/name.mp4"
+            ]
+        },
+        {
+            "id": 103,
+            "title": "In Place",
+            "sub":null,
+            "authors": [
+                "Name Name",
+                "Name Name"
+            ],
+            "desc": "inplace, Ya ya this is a project bro, lets do it.",
+            "link": "https://inplace.org",
+            "gallery": [
+                "projects/inplace/img/name.png",
+                "projects/inplace/vid/name.mp4"
+            ]
+        }
+    ]
+}

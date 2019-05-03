@@ -27,7 +27,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* cursor: none !important; */
+    cursor: none !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
@@ -45,7 +45,8 @@ html {
 }
 
 h1 {
-    font: 600 3em/var(--linespace) var(--heading);
+    font: 600 3em/1.2 var(--heading);
+    word-break: break-all;
 }
 
 h2 {
@@ -112,8 +113,10 @@ main.landing {
 .landing .projects .project { 
     width: 100%;
     height: auto;
-    padding: 2em;
+    padding: 0.5em;
     background-color: green;
+    padding-top: 70%;
+    background-size: cover;
 }
 .landing .more-info {
     background-color: red;
@@ -150,18 +153,25 @@ button.button:hover {
     align-items: center;
     width: 100%;
     overflow: hidden;
+    justify-items: center;
+    max-width: 20em;
     /* margin: 0 calc( var(--padding) * -1 ); */
 }
 
+.slide-answer > * {
+    overflow: hidden;
+}
+
 .slide-answer h2 {
-    max-width: 2em;
-    max-height: 2em;
+    width: 2em;
+    height: 2em;
     text-align: center;
     font-size: 1.5em;
     border: solid 2px transparent;
     border-radius: var(--round);
     transition: border 0.3s ease;
     padding: 0.3em;
+    max-width: 23vw;
 }
 .slide-answer h2.selected {
     border: solid 2px var(--colour-white);
@@ -171,6 +181,7 @@ button.button:hover {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.4em;
+    max-width: 18vw;
 }
 .slide-answer .trail div {
     width: 0.3em;
@@ -189,6 +200,7 @@ button.button:hover {
     transition: transform 0.3s ease;
     position: relative;
     left: 0px;
+    max-width: 18vw;
 }
 .slide-answer .slider:hover {
     transform: scale(1.1);
@@ -241,3 +253,4 @@ button.button:hover {
 .custom-cursor.link {
     transform: translate(-50%, -50%) scale(1.1);
 }
+
