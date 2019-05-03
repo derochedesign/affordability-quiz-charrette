@@ -18,8 +18,9 @@
         },
         {
             "id": 102,
-            "title": "Greenbelt",
+            "title": "Yellowbelt",
             "sub":null,
+            "thumb":"projects/yellow/img/thumb.jpg",
             "authors": [
                 "Name Name",
                 "Name Name"
@@ -35,6 +36,7 @@
             "id": 103,
             "title": "In Place",
             "sub":null,
+            "thumb":"projects/inplace/img/thumb.jpg",
             "authors": [
                 "Name Name",
                 "Name Name"

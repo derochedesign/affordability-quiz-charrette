@@ -51,20 +51,29 @@ const sliderLogic = e => {
             
             if (temp <= ((sliderBar.offsetWidth/2) - (sliderGrab.offsetWidth/2) )) {
                 e.target.style.left = `${sliderPos + (mouseX - mouseXog)}px`;
+                sliderBar.style.transform = `perspective(50em) rotateY(${(mouseX - mouseXog)/-6}deg)`;
+                
             }
             
             if (rightA.offsetLeft <= sliderGrab.offsetLeft) {
                 rightA.classList.add("selected");
+                rightA.style.transform = `scale(1.2)`;
+                //ANSWERED YES (looping)
+                console.log("YES");
             }
             else if ( (leftA.offsetLeft + leftA.offsetWidth) >= (sliderGrab.offsetLeft + sliderGrab.offsetWidth) ) {
                 leftA.classList.add("selected");
+                leftA.style.transform = `scale(1.2)`;
+                //ANSWERED NO (looping)
+                console.log("NO");
+                
             }
             else {
                 let selected = document.querySelectorAll(".slide-answer h2.selected");
-                
                 if (selected) {
                     selected.forEach(one => {
                         one.classList.remove("selected");
+                        one.style.transform = `scale(1)`;
                     });
                 }
             }
@@ -73,21 +82,19 @@ const sliderLogic = e => {
     };
     
     if (e.type == "mousedown") {
-        sliderBar.addEventListener("mousemove", sliderPosition);
+        document.addEventListener("mousemove", sliderPosition);
     }
     else if (e.type == "touchstart") {
         sliderBar.addEventListener("touchmove", sliderPosition);
     }
-    
 }
 
 sliderGrab.addEventListener("mousedown", e => sliderLogic(e));
 sliderGrab.addEventListener("touchstart", e => sliderLogic(e));
 
-sliderGrab.addEventListener("mouseup", resetSliderGrab);
-sliderBar.addEventListener("mouseleave", resetSliderGrab);
-
+document.addEventListener("mouseup", resetSliderGrab);
 sliderGrab.addEventListener("touchend", resetSliderGrab);
+
 
 
 document.addEventListener("DOMContentLoaded", _ => {

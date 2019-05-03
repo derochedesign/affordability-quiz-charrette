@@ -109,6 +109,8 @@ main.landing {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
     margin: 1em 0;
+    overflow-x: scroll;
+    width: 100vw;
 }
 .landing .projects .project { 
     width: 100%;
@@ -152,9 +154,10 @@ button.button:hover {
     grid-gap: 1em;
     align-items: center;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     justify-items: center;
     max-width: 20em;
+    margin: 1em 0;
     /* margin: 0 calc( var(--padding) * -1 ); */
 }
 
@@ -172,6 +175,7 @@ button.button:hover {
     transition: border 0.3s ease;
     padding: 0.3em;
     max-width: 23vw;
+    transition: 0.3s ease;
 }
 .slide-answer h2.selected {
     border: solid 2px var(--colour-white);
