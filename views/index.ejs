@@ -2,38 +2,76 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Affordability Quiz</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <a data-cursor-info="link" class="make-pointer" href="javascript:">Link</a>
     
-    <div id="slider" class="slide-answer">
-      <h2 id="yes">Yes</h2>
+    <nav class="topbar">
+      <img class="logo" src="img/logos/logo_main.svg"></img>
+      <h2 class="exh">Exhibition</h2>
+    </nav>
+    
+    <main class="landing">
       
-      <div class="trail">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <section class="hero">
+        
+        <h1>Affordability</h1>
+        <h3>Ya,ya,ya esketit!</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel a cumque dicta nisi, ea quos et quae quaerat consectetur quidem. Fugiat cum expedita veniam quasi nobis quis molestias nostrum explicabo.</p>
+        
+        <button class="button">Quiz</button>
+        
+        <div id="slider" class="slide-answer">
+            <h2 id="yes">Yes</h2>
+            
+            <div class="trail">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            
+            <div id="sliderGrab" data-cursor-info="slider" class="slider make-pointer">
+              <span>< ></span>
+            </div>
+            
+            <div class="trail">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            
+            <h2 id="no">No</h2>
+          </div>
+      </section>
       
-      <div id="sliderGrab" data-cursor-info="slider" class="slider make-pointer">
-        <span>< ></span>
-      </div>
+      <section class="projects">
+        <div class="project">1</div>
+        <div class="project">2</div>
+        <div class="project">3</div>
+      </section>
       
-      <div class="trail">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <section class="more-info">
+        <h1>About Us</h1>
+        <h2>Affordability, The Book, and The Exhibition</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate consectetur aliquam, laudantium nostrum iure recusandae fugiat tempora repellendus debitis rerum ea esse, quisquam porro obcaecati sit delectus reiciendis id odio.</p>
+      </section>
       
-      <h2 id="no">No</h2>
-    </div>
+      <footer>
+        <h1>Connect</h1>
+        <h3>Instagram</h3>
+        <h3>Twitter</h3>
+        <h3>Facebook</h3>
+      </footer>
+      
+    </main>
     
     <div class="custom-cursor"><div class="inner-cursor"></div></div>
+    
     <script src="js/main.js" charset="utf-8"></script>
   </body>
 </html>

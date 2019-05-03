@@ -10,7 +10,9 @@
     --content: "Open Sans", "Helvetica", sans-serif;
 
     --linespace: 1.5;
-    --padding: 2em;
+    --padding: 3em;
+    
+    --topbar-height: 4em;
     
     --shadow: 0 0 10px 1px rgba(0,0,0,0.3);
     
@@ -18,13 +20,14 @@
     
     /* z-index */
     --z-cursor: 1000;
+    --z-topbar: 100;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: none !important;
+    /* cursor: none !important; */
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
@@ -57,10 +60,152 @@ h6 {
 }
 
 body {
-    padding: calc( var(--padding) * 1.5);
-    background-color: var(--colour-blue);
+    /* background-color: var(--colour-blue); */
     height: 100%;
 }
+
+nav.topbar {
+    position: fixed;
+    z-index: var(--z-topbar);
+    width: 100%;
+    height: var(--topbar-height);
+    background-color: var(--colour-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 3em;
+    top: 0;
+}
+.topbar .logo {
+    justify-self: left;
+    width: 5em;
+}
+.topbar .exh {
+    justify-self: right;
+    font-size: 1em;
+    color: var(--colour-black);
+    line-height: 1;
+}
+
+/* ________________LAYOUTS__________________ */
+
+main.landing {
+    margin-top: var(--topbar-height);
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+}
+.landing section, .landing footer {
+    width: 100%;
+    padding: var(--padding);
+}
+.landing .hero {
+    height: calc(100vh - var(--topbar-height));
+    background-color: var(--colour-blue);
+}
+.landing .projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    margin: 1em 0;
+}
+.landing .projects .project { 
+    width: 100%;
+    height: auto;
+    padding: 2em;
+    background-color: green;
+}
+.landing .more-info {
+    background-color: red;
+}
+.landing footer {
+    background-color: lightgrey;
+}
+
+/* ___________________INPUTS_____________________ */
+
+button.button {
+    border: solid 3px var(--colour-white);
+    border-radius: 0;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    color: var(--colour-white);
+    font-size: 1em;
+    font-weight: 700;
+    transition: 0.3s ease;
+    outline: none;
+}
+
+button.button:hover {
+    background-color: var(--colour-white);
+    color: var(--colour-black);
+}
+
+/* ________________SLIDER STYLES__________________ */
+
+.slide-answer {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 1em;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    /* margin: 0 calc( var(--padding) * -1 ); */
+}
+
+.slide-answer h2 {
+    max-width: 2em;
+    max-height: 2em;
+    text-align: center;
+    font-size: 1.5em;
+    border: solid 2px transparent;
+    border-radius: var(--round);
+    transition: border 0.3s ease;
+    padding: 0.3em;
+}
+.slide-answer h2.selected {
+    border: solid 2px var(--colour-white);
+}
+
+.slide-answer .trail {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.4em;
+}
+.slide-answer .trail div {
+    width: 0.3em;
+    height: 0.3em;
+    background-color: var(--colour-white);
+    opacity: 0.3;
+    border-radius: var(--round);
+}
+
+.slide-answer .slider {
+    width: 2.4em;
+    height: 2.4em;
+    background-color: var(--colour-white);
+    border-radius: var(--round);
+    display: grid;
+    transition: transform 0.3s ease;
+    position: relative;
+    left: 0px;
+}
+.slide-answer .slider:hover {
+    transform: scale(1.1);
+}
+.slide-answer .slider span {
+    color: var(--colour-blue);
+    font-family: "Poppins";
+    font-weight: 500;
+    align-self: center;
+    justify-self: center;
+    font-size: 1.4em;
+    user-select: none;
+    -moz-user-select: none;
+    pointer-events: none;
+}
+
+/* ________________CURSOR__________________ */
 
 .custom-cursor {
     position: fixed;
@@ -95,64 +240,4 @@ body {
 }
 .custom-cursor.link {
     transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* ________________SLIDER STYLES__________________ */
-
-.slide-answer {
-    display: grid;
-    grid-template-columns: repeat(5, max-content);
-    grid-gap: 1em;
-    align-items: center;
-}
-
-.slide-answer h2 {
-    width: 2.4em;
-    height: 2.4em;
-    text-align: center;
-    border: solid 2px transparent;
-    border-radius: var(--round);
-    transition: border 0.3s ease;
-    padding: 0.4em;
-}
-.slide-answer h2.selected {
-    border: solid 2px var(--colour-white);
-}
-
-.slide-answer .trail {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 0.5em;
-}
-.slide-answer .trail div {
-    width: 0.3em;
-    height: 0.3em;
-    background-color: var(--colour-white);
-    opacity: 0.3;
-    border-radius: var(--round);
-}
-
-.slide-answer .slider {
-    width: 2.6em;
-    height: 2.6em;
-    background-color: var(--colour-white);
-    border-radius: var(--round);
-    display: grid;
-    transition: transform 0.3s ease;
-    position: relative;
-    left: 0px;
-}
-.slide-answer .slider:hover {
-    transform: scale(1.1);
-}
-.slide-answer .slider span {
-    color: var(--colour-blue);
-    font-family: "Poppins";
-    font-weight: 500;
-    align-self: center;
-    justify-self: center;
-    font-size: 1.6em;
-    user-select: none;
-    -moz-user-select: none;
-    pointer-events: none;
 }

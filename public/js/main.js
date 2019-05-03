@@ -29,17 +29,19 @@ const resetSliderGrab = _ => {
     
 };
 
-sliderGrab.addEventListener("mousedown", e => {
+const sliderLogic = e => {
     //get mouse x, consider it 0, then apply difference to sliderGrab
-    const mouseXog = e.clientX;
+    const mouseXog = (e.type == "mousedown") ? e.clientX : e.touches[0].clientX;
     canSlide = true;
+    console.log("fuck");
+    
     (!e.target.style.left) && (e.target.style.left = `0px`);
     
     const sliderPos = parseInt(e.target.style.left);
     
     const sliderPosition = ev => {
         if (canSlide) {
-            const mouseX = ev.clientX;
+            const mouseX = (e.type == "mousedown") ? ev.clientX : ev.touches[0].clientX;
             e.target.style.left = `${sliderPos + (mouseX - mouseXog)}px`;
             
             if (no.offsetLeft <= sliderGrab.offsetLeft) {
@@ -62,21 +64,35 @@ sliderGrab.addEventListener("mousedown", e => {
         }
     };
     
-    sliderBar.addEventListener("mousemove", sliderPosition);
+    if (e.type == "mousedown") {
+        sliderBar.addEventListener("mousemove", sliderPosition);
+    }
+    else if (e.type == "touchstart") {
+        sliderBar.addEventListener("touchmove", sliderPosition);
+    }
     
-});
+}
 
-sliderBar.addEventListener("mouseup", resetSliderGrab);
+sliderGrab.addEventListener("mousedown", e => sliderLogic(e));
+sliderGrab.addEventListener("touchstart", e => sliderLogic(e));
+
+sliderGrab.addEventListener("mouseup", resetSliderGrab);
 sliderBar.addEventListener("mouseleave", resetSliderGrab);
+
+sliderGrab.addEventListener("touchend", resetSliderGrab);
 
 
 document.addEventListener("DOMContentLoaded", _ => {
     
     //custom cursor
     const cursor = document.querySelector(".custom-cursor");
-    const pointerElems = document.querySelectorAll(".make-pointer");
+    const pointerElems = [...document.querySelectorAll(".make-pointer"), ...document.querySelectorAll("button")];
     
     let cursorInit = false;
+    
+    document.addEventListener("touchstart", e => {
+        cursor.style.display = "none";
+    });
   
     for (var i = 0; i < pointerElems.length; i++) {
     
