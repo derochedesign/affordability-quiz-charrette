@@ -7,5 +7,9 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.render("index");
   });
+  
+  app.get("/quiz", function(req, res) {
+    res.render("quiz");
+  });
 
 };

@@ -27,16 +27,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: none !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
 }
 
-::selection {
+/* ::selection {
     background-color: var(--colour-black);
     color: var(--colour-white);
-}
+} */
 
 html {
     font: 300 1em/var(--linespace) var(--content);
@@ -46,7 +45,7 @@ html {
 
 h1 {
     font: 600 3em/1.2 var(--heading);
-    word-break: break-all;
+    /* word-break: break-all; */
 }
 
 h2 {
@@ -62,8 +61,10 @@ h6 {
 
 body {
     /* background-color: var(--colour-blue); */
-    height: 100%;
+    height: calc(100% - var(--topbar-height));
 }
+
+/* ________________TOPBAR__________________ */
 
 nav.topbar {
     position: fixed;
@@ -81,18 +82,40 @@ nav.topbar {
     justify-self: left;
     width: 5em;
 }
-.topbar .exh {
+.topbar .exhb-info {
     justify-self: right;
+    position: relative;
+}
+.topbar .exhb-info h2.label {
+    cursor: help;
     font-size: 1em;
     color: var(--colour-black);
     line-height: 1;
 }
+.topbar .exhb-info:hover .pop-box{
+    display: block;
+}
+
+.topbar .exhb-info h2.label:hover {
+    text-decoration: underline;
+}
+
+.topbar .exhb-info .pop-box {
+    position: absolute;
+    background-color: red;
+    padding: 3em;
+    display: none;
+    transition: 0.3s ease;
+    right: 0;
+}
 
 /* ________________LAYOUTS__________________ */
 
-main.landing {
+main {
     margin-top: var(--topbar-height);
     width: 100%;
+}
+main.landing {
     display: grid;
     grid-template-rows: repeat(4, auto);
 }
@@ -107,7 +130,7 @@ main.landing {
 .landing .projects {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1em;
+    grid-gap: 2em;
     margin: 1em 0;
     overflow-x: scroll;
     width: 100vw;
@@ -119,12 +142,41 @@ main.landing {
     background-color: green;
     padding-top: 70%;
     background-size: cover;
+    min-width: 15em;
 }
+.landing .projects .project:last-child {
+    /* margin-right: 3em; */
+} 
 .landing .more-info {
     background-color: red;
 }
 .landing footer {
     background-color: lightgrey;
+}
+
+main.quiz {
+    display: grid;
+    grid-template-columns: auto 30em;
+    width: 100%;
+    height: 100%;
+}
+main.quiz section {
+    padding: var(--padding);
+}
+.quiz .question {
+    background-color: red;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 6em;
+}
+.quiz .question .timeline {
+    background-color: blue;
+}
+.quiz .answers {
+    background-color: green;
+    width: 100%;
+    height: 100%;
 }
 
 /* ___________________INPUTS_____________________ */
@@ -160,6 +212,9 @@ button.button:hover {
     margin: 1em 0;
     /* margin: 0 calc( var(--padding) * -1 ); */
 }
+.slide-answer.dark {
+    --colour-white: black;
+}
 
 .slide-answer > * {
     overflow: hidden;
@@ -176,6 +231,9 @@ button.button:hover {
     padding: 0.3em;
     max-width: 23vw;
     transition: 0.3s ease;
+    color: var(--colour-white);
+    user-select: none;
+    -moz-user-select: none;
 }
 .slide-answer h2.selected {
     border: solid 2px var(--colour-white);
@@ -205,6 +263,7 @@ button.button:hover {
     position: relative;
     left: 0px;
     max-width: 18vw;
+    cursor: col-resize;
 }
 .slide-answer .slider:hover {
     transform: scale(1.1);
@@ -219,42 +278,5 @@ button.button:hover {
     user-select: none;
     -moz-user-select: none;
     pointer-events: none;
-}
-
-/* ________________CURSOR__________________ */
-
-.custom-cursor {
-    position: fixed;
-    pointer-events: none;
-    opacity: 0;
-    /* mix-blend-mode: difference; */
-    width: 2.6em;
-    height: 2.6em;
-    border-radius: var(--round);
-    border: solid 2px var(--colour-white);
-    background-color: transparent;
-    transition: transform 0.3s ease;
-    transform: translate(-50%, -50%);
-    z-index: var(--z-cursor);
-    box-shadow: var(--shadow);
-}
-.custom-cursor .inner-cursor {
-    width: 1.4em;
-    height: 1.4em;
-    border-radius: var(--round);
-    background-color: var(--colour-white);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    transition: inherit;
-    box-shadow: inherit;
-}
-  
-.custom-cursor.link .inner-cursor {
-    transform: translate(-50%, -50%) scale(0.5);
-}
-.custom-cursor.link {
-    transform: translate(-50%, -50%) scale(1.1);
 }
 

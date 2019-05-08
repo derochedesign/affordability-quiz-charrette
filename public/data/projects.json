@@ -18,7 +18,7 @@
         },
         {
             "id": 102,
-            "title": "Yellowbelt",
+            "title": "Meliorise",
             "sub":null,
             "thumb":"projects/yellow/img/thumb.jpg",
             "authors": [
@@ -26,7 +26,7 @@
                 "Name Name"
             ],
             "desc": "yellow, Ya ya this is a project bro, lets do it.",
-            "link": "https://yellowbelt.com",
+            "link": "https://meliorise.com",
             "gallery": [
                 "projects/yellow/img/name.png",
                 "projects/yellow/vid/name.mp4"

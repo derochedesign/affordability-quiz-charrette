@@ -9,10 +9,7 @@
   </head>
   <body>
     
-    <nav class="topbar">
-      <img class="logo" src="img/logos/logo_main.svg"></img>
-      <h2 class="exh">Exhibition</h2>
-    </nav>
+    <%- include partials/nav.ejs %>
     
     <main class="landing">
       
@@ -22,7 +19,7 @@
         <h3>Ya,ya,ya subtitle</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel a cumque dicta nisi, ea quos et quae quaerat consectetur quidem. Fugiat cum expedita veniam quasi nobis quis molestias nostrum explicabo.</p>
         
-        <button class="button">Quiz</button>
+        <a href="/quiz"><button class="button">Quiz</button></a>
         
         <div id="slider" class="slide-answer">
             <h2 id="no">No</h2>
@@ -34,7 +31,7 @@
               <div></div>
             </div>
             
-            <div id="sliderGrab" data-cursor-info="slider" class="slider make-pointer">
+            <div id="sliderGrab" class="slider">
               <span>< ></span>
             </div>
             
@@ -67,8 +64,6 @@
       </footer>
       
     </main>
-    
-    <div class="custom-cursor"><div class="inner-cursor"></div></div>
     
     <script src="js/main.js" charset="utf-8"></script>
   </body>
