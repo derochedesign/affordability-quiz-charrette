@@ -1,0 +1,22 @@
+{
+    "questions":[
+        {
+            "id": 201,
+            "question":"Why do you do that fam?",
+            "answer": "Here is an insight to the question that is non-dependant on your answer",
+            "img": null
+        },
+        {
+            "id": 202,
+            "question":"2Why do you do that fam?",
+            "answer": "2Here is an insight to the question that is non-dependant on your answer",
+            "img": null
+        },
+        {
+            "id": 203,
+            "question":"3Why did you do that fam?",
+            "answer": "3Here is an another insight to the question that is non-dependant on your answer",
+            "img": null
+        }
+    ]
+}

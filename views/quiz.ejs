@@ -11,44 +11,62 @@
     
     <%- include partials/nav.ejs %>
     
-    <main class="quiz">
+    <main class="quiz stage-answer">
         
         <section class="question">
-            <div class="info">
-                <h4>Question</h4>
-                <h1>Why do questions have question marks at the end?</h1>
+            <div class="timeline">
+              <div class="base-line">
+                  <div class="marker">
+                    <span>4/10</span>
+                  </div>
+                  <div class="prog-line"></div>
+              </div>
             </div>
-            <div class="timeline"></div>
+            <div class="info">
+                <h4>Affordability Quiz</h4>
+                <h1>Homelessness has been increasing as the cost of housing and living rises. Roughly 200,000 Canadians experience homelessness each year. Do you think the government would save money if they just gave each of them $35,000 dollars a year?</h1>
+                <h1 class="insight">Between the ages of 12 and 49, it costs the average Canadian women an estimated $519,976,963 on menstrual hygiene products. That’s expensive! Without access to these products, women and girls are unable to participate in society.Between the ages of 12 and 49, it costs the average Canadian women an estimated $519,976,963 on menstrual hygiene products. That’s expensive! Without access to these products, women and girls are unable to participate in society.
+                </h1>
+            </div>
+            
         </section>
         
         <section class="answers">
-            <button class="button answer">Yes</button>
-            <button class="button answer">No</button>
+          <div class="buttons">
+              <button class="button answer">Yes</button>
+              <button class="button answer selected">No</button>
+          </div>
+          
+          <div class="next">
+            <h1 class="answer-label">Yes</h1>
+            <button class="button coloured">Next -></button>
+          </div>
+          
+          <div id="slider" class="slide-answer">
+              <h2 id="no">No</h2>
+              
+              <div class="trail">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              
+              <div id="sliderGrab" class="slider">
+                <span>< ></span>
+              </div>
+              
+              <div class="trail">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              
+              <h2 id="yes">Yes</h2>
+          </div>
+          
         </section>
-        
-        <!-- <div id="slider" class="slide-answer dark">
-            <h2 id="no">No</h2>
-            
-            <div class="trail">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            
-            <div id="sliderGrab" data-cursor-info="slider" class="slider make-pointer">
-              <span>< ></span>
-            </div>
-            
-            <div class="trail">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            
-            <h2 id="yes">Yes</h2>
-        </div> -->
       
     </main>
     
