@@ -1,7 +1,8 @@
 let root = document.documentElement;
 
 let allQuestions = [];
-let quesPos = 7;
+let allProjects = [];
+let quesPos = 0;
 let colourPos = 0; //0,1,2,or 3
 
 let tally = {
@@ -18,15 +19,19 @@ const colourSets = [
 ]
 
 const mainElem = document.getElementById("main");
+const bodyElem = document.getElementById("body");
 
 document.addEventListener("DOMContentLoaded", _ => {
     
     $.getJSON('data/questions.json', function(result) { 
            
          allQuestions = [...result.questions];
-         console.log(result);
          init();
     });
+    $.getJSON('data/projects.json', function(result) { 
+           
+        allProjects = [...result.projects];
+   });
     
     //SLIDER FUNCTIONALITY
     if (document.getElementById("slider")) {
@@ -57,6 +62,12 @@ document.addEventListener("DOMContentLoaded", _ => {
                 setTimeout( _ => {
                     sliderGrab.style.transition = `transform 0.3s ease`;
                 },300);
+                
+                //unstyle answer
+                rightA.classList.remove("selected");
+                rightA.style.transform = `scale(1)`;
+                leftA.classList.remove("selected");
+                leftA.style.transform = `scale(1)`;
             }
         };
 
@@ -161,26 +172,56 @@ document.addEventListener("DOMContentLoaded", _ => {
 document.addEventListener("click", e => {
     
     console.log(e.target);
+    const exhbPop = document.getElementById("exhbPop");
+    const projectPop = document.getElementById("projectPop");
     
-
     if (e.target.matches(".answerBtns")) {
-        
-        handleQuestions(Number(e.target.dataset.answer));
-        
+        if (!e.target.classList.contains("selected")) {
+            handleQuestions(Number(e.target.dataset.answer));
+            bodyElem.scrollTop = 0;
+        }
     }
     
     if (e.target.matches("#nextBtn")) {
         console.log(quesPos);
-        
+        bodyElem.scrollTop = 0;
         nextQuestion();
     }
     
+    if (e.target.matches(".projectSelect")) {
+        populateProjectPop(e.target.dataset.projId);
+    }
+    
+    if (e.target.matches("#closeProjPop")) {
+        projectPop.classList.remove("active");
+        bodyElem.style.overflow = "auto";
+    }
+    
+    if (e.target.matches("#touchExhbPop")) {
+        exhbPop.classList.add("active");
+        bodyElem.style.overflow = "hidden";
+    }
+    
+    if (e.target.matches("#closeExhb")) {
+        exhbPop.classList.remove("active");
+        bodyElem.style.overflow = "auto";
+    }
+    
+    
 });
+
+const populateProjectPop = id => {
+    
+    const projectPop = document.getElementById("projectPop");
+    projectPop.classList.add("active");
+    bodyElem.style.overflow = "hidden";
+    projectPop.innerHTML = projectFullTemplate(allProjects[allProjects.findIndex(project => project.id == id)]);
+}
 
 const nextQuestion = _ => {
     
-    main.classList.toggle("stage-question");
-    main.classList.toggle("stage-answer");
+    mainElem.classList.toggle("stage-question");
+    mainElem.classList.toggle("stage-answer");
     
     document.querySelectorAll(`[data-answer]`).forEach(ans => ans.classList.remove("selected"));
     
@@ -208,11 +249,18 @@ const nextQuestion = _ => {
     
 }
 
+const generateQuestion = (qu, pos) => {
+    
+    const questionView = document.getElementById("questionView");
+    questionView.innerHTML = questionTemplate(qu, pos);
+    
+}
+
 const handleQuestions = ans => {
     processOutcome(ans);
         
-    main.classList.toggle("stage-question");
-    main.classList.toggle("stage-answer");
+    mainElem.classList.toggle("stage-question");
+    mainElem.classList.toggle("stage-answer");
     
     if (ans) {
         //yes; set yes to selected class
@@ -255,27 +303,42 @@ const processOutcome = ans => {
 }
 
 const generateOutcome = _ => {
-    main.innerHTML = resultsTemplate();
-    main.className = "final";
+    let outcomes = [];
+    let projects = [];
+    
+    $.getJSON('data/projects.json', function(result) {
+        outcomes = [...result.outcomes];
+        projects = [...result.projects];
+        mainElem.innerHTML = resultsTemplate(outcomes, projects);
+        mainElem.className = "final";
+    });
+    
 }
 
-const resultsTemplate = data => {
+const resultsTemplate = (data, projects) => {
+    
+    const persona = (Object.keys(tally).reduce((a, b) => tally[a] > tally[b] ? a : b));
+    
+    const thisOutcome = data[data.findIndex( dat => persona == dat.title)];
+    
+    const reccProj = projects[projects.findIndex( proj => thisOutcome.project == proj.id)];
+    
     return (
         `
         <section class="results">
           <div class="outcome">
               <h4>Afford | <span>Results</span></h4>
               <div class="hero">
-                  <img src="img/art/seeker.svg"></img>
+                  <img src="img/art/${thisOutcome.img}"></img>
                   <h1 class="outcome-label">
-                    You are<br> a Seeker.
+                    You are<br> a <span>${persona}</span>.
                   </h1>
               </div>
               <div class="share">
                 <h3 class="coloured">Share Results</h3>
-                <button class="button text">Facebook</button>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"><button class="button text">Facebook</button></a>
                 <span>/</span>
-                <button class="button text">Twitter</button>
+                <a target="_blank" href="https://twitter.com/intent/tweet?text=I'm%20a%20${persona}!%20Find%20out%20what%20you%20are:%20linkhere"><button class="button text">Twitter</button></a>
               </div>
               
               
@@ -283,25 +346,19 @@ const resultsTemplate = data => {
           <div class="info-container">
             <div class="info">
               <h3 class="spaced">What does this mean?</h3>
-              <p>As a <span>Seeker</span> when it comes to affordability you envision change and your main motivator is to empower the people around you.</p> 
+              <p>As a <span>${persona}</span> ${thisOutcome.desc}</p> 
               <h3 class="spaced">Explore</h3>
-              <p>Boost is a project that unlocks value in people, in order to create continuism aligment between workers and their jobs and make work meaningful in the face of future worker displacement.</p>
-              <img class="projectSelect" src="img/temp.jpeg" alt="temporary">
+              <p>${thisOutcome.explore}</p>
+              <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect">Learn More</button>
+              <img src="img/${reccProj.thumb}" alt="${reccProj.title}">
               
-              <button type="button" class="button">Go Again</button>
+              <a href="/quiz"><button type="button" class="button">Go Again</button></a>
             </div>
           </div>
           
         </section>
         `
     )
-}
-
-const generateQuestion = (qu, pos) => {
-    
-    const questionView = document.getElementById("questionView");
-    questionView.innerHTML = questionTemplate(qu, pos);
-    
 }
 
 const questionTemplate = (data, pos) => {
@@ -331,12 +388,36 @@ const questionTemplate = (data, pos) => {
 }
   
 const projectTemplate = data => {
+    //<h4>${(data.sub == null) ? "" : data.sub}</h4>
     return (
     `
-    <div style="background-image:url(img/${data.thumb})" class="project">
-        <h3>${data.title}</h3>
-        <h4>${(data.sub == null) ? "" : data.sub}</h4>
+    <div class="project">
+        <div>
+            <h1>${data.title}</h1>
+            <button data-proj-id="${data.id}" type="button" class="button projectSelect">Explore</button>
+        </div>
+        <p>Boost is an integrated strategy for transitioning workers during the rapid changed caused by automation that is affecting every industry.</p>
+        <img src="img/${data.thumb}" alt="${data.title} thumb">
     </div>
     `
+    )
+}
+
+const projectFullTemplate = data => {
+    return (
+        `
+        <div id="closeProjPop" class="close"><span>&times;</span></div>
+        <div class="content">
+            <img src="img/projects/${data.title}/logo.svg" alt="${data.title} logo">
+            <h1>${data.title}</h1>
+            <h3>Description</h3>
+            <p>${data.desc}</p>
+            <div class="gallery">
+                <img src="img/projects/boost/img/img1.jpg" alt="gallery image">
+                <img src="img/projects/boost/img/img1.jpg" alt="gallery image"> 
+                <img src="img/projects/boost/img/img1.jpg" alt="gallery image">       
+            </div>
+        </div>
+        `
     )
 }

@@ -3,13 +3,13 @@
 :root {
     --colour-black: black;
     --colour-white: white;
-    --colour-blue: #003BFF;
     
     /* dynamic colours */
     --colour-body: white;
     --colour-text: black;
+    --colour-text-invert: white;
     --colour-main: var(--colour-orange);
-    --colour-secondary: blue;
+    --colour-secondary: var(--colour-lime);;
     
     --colour-magenta: #D8208E;
     --colour-pink: #F6B4D1;
@@ -29,6 +29,7 @@
 
     --linespace: 1.5;
     --padding: 3em;
+    --toppadding: 2em;
     
     --topbar-height: 4em;
     
@@ -66,7 +67,7 @@ html {
 }
 
 p {
-    font: var(--regular) 1.25em/var(--linespace) var(--content);
+    font: var(--regular) 1.2em/var(--linespace) var(--content);
     margin-bottom: 1em;
 }
 
@@ -140,16 +141,16 @@ nav.topbar {
     line-height: 1;
 }
 .topbar .exhb-info:hover .pop-box {
-    display: block;
+    display: none;
 }
 
 .topbar .exhb-info h2.label:hover {
     text-decoration: underline;
 }
 
-.topbar .exhb-info .pop-box {
+.topbar .exhb-info .pop-box, .exhb-pop {
     position: absolute;
-    background-color: red;
+    background-color: white;
     padding: 3em;
     display: none;
     transition: 0.3s ease;
@@ -157,6 +158,13 @@ nav.topbar {
     left: 0;
     width: 100%;
     height: 100vh;
+}
+.exhb-pop {
+    position: fixed;
+}
+.exhb-pop.active {
+    display: block;
+    z-index: var(--z-propop);
 }
 
 /* ________________LAYOUTS__________________ */
@@ -171,37 +179,81 @@ main.landing {
 }
 .landing section, .landing footer {
     width: 100%;
-    padding: 2em var(--padding);
+    padding: var(--toppadding) var(--padding);
 }
 .landing .hero {
-    height: calc(100vh - var(--topbar-height));
-    background-color: var(--colour-blue);
+    --colour-text: var(--colour-white);
+    background-color: var(--colour-magenta);
+    color: var(--colour-text);
+}
+.landing .title-header {
+    padding: var(--padding);
+    padding-bottom: 0;
+}
+.landing .title-header h1 {
+    margin-bottom: 0.5em;
 }
 .landing .projects {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2em;
-    margin: 1em 0;
+    grid-template-rows: 0.5em auto;
+    grid-row-gap: 2em;
+    margin: 0 auto;
     overflow-x: scroll;
     width: 100vw;
+    max-width: 70em;
+    padding-right: 0;
+}
+.landing .projects .length-indicator {
+    background-color: var(--colour-magenta);
+    width: calc(100% - 3em);
+    height: 100%;
+    grid-column: span 3;
 }
 .landing .projects .project { 
     width: 100%;
     height: auto;
-    padding: 0.5em;
-    background-color: green;
-    padding-top: 70%;
-    background-size: cover;
-    min-width: 15em;
+    /* background-color: lightgrey; */
+    min-width: 20em;
+    padding-right: 3em;
+}
+/* .landing .projects .project:first-child {
+    padding-left: 3em;
 }
 .landing .projects .project:last-child {
-    /* margin-right: 3em; */
-} 
-.landing .more-info {
-    background-color: red;
+    padding-right: 3em;
+} */
+.landing .projects .project div {
+    display: grid;
+    grid-template-columns: auto min-content;
+    margin-bottom: 2em;
 }
+.landing .projects .project img {
+    width: 100%;
+    display: block;
+}
+
+.landing .more-info, .landing .title-header, .landing .hero {
+    margin: 0 auto;
+    max-width: 70em;
+}
+.landing .more-info button.button.text {
+    margin-bottom: 2em;
+}
+.landing .more-info h1 {
+    margin-bottom: 0.5em;
+}
+
 .landing footer {
-    background-color: lightgrey;
+    background-color: #efefef;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+}
+
+.landing footer .logo {
+    width: 5em;
+    align-self: center;
+    margin-right: var(--padding);
 }
 
 main.quiz {
@@ -213,7 +265,7 @@ main.quiz {
     transition: background-color 0.7s ease;
 }
 main.quiz section {
-    padding: 2em var(--padding);
+    padding: var(--toppadding) var(--padding);
     transition: background-color 0.7s ease;
 }
 .quiz .question {
@@ -232,6 +284,7 @@ main.quiz section {
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--colour-body);
+    justify-self: right;
 }
 .quiz .answers .buttons {
     display: none;
@@ -262,8 +315,11 @@ button.button {
 
 button.button:hover {
     background-color: var(--colour-text);
-    color: var(--colour-text);
-    color: blue;
+    color: var(--colour-black);
+}
+.landing .project button.button:hover {
+    background-color: var(--colour-text);
+    color: var(--colour-text-invert);
 }
 .next button.button {
     max-width: 10em;
@@ -285,14 +341,6 @@ button.button.coloured {
     border-color: var(--colour-secondary);
 }
 
-.projectSelect {
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-.projectSelect:hover {
-    opacity: 0.8;
-}
-
 .quiz.stage-answer button.answer:hover {
     background-color: transparent;
     color: var(--colour-white);
@@ -305,7 +353,7 @@ button.button.coloured {
     --colour-text: var(--colour-black);
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     z-index: var(--z-propop);
     top:0;
     left:0;
@@ -315,19 +363,27 @@ button.button.coloured {
     overflow: scroll;
     display: none;
 }
+.project-pop.active {
+    display: block;
+}
 .project-pop .close {
     position: fixed;
     top: calc(var(--padding) / 2);
     right: calc(var(--padding) / 2);
     cursor: pointer;
 }
-.project-pop .close span {
+.project-pop .close span, #closeExhb {
     font-family: "helvetica", sans-serif;
     font-size: 3em;
     font-weight: 300;
     user-select: none;
     -moz-user-select: none;
     line-height: 0.6;
+    pointer-events: none;
+    cursor: pointer;
+}
+#closeExhb {
+    pointer-events: all;
 }
 .project-pop .content {
     max-width: 50em;
@@ -390,7 +446,7 @@ button.button.coloured {
 /* ________________RESULTS STYLING__________________ */
 
 main.final {
-  padding: var(--padding);  
+  padding: var(--toppadding) var(--padding);  
 }
 
 .final .results .outcome .hero {
@@ -411,6 +467,9 @@ main.final {
     line-height: 1.2;
     padding-left: 15vw;
 }
+.final .results .outcome .hero h1.outcome-label span {
+    text-transform: capitalize;
+}
 
 .final .results .info {
     --colour-text: var(--colour-white);
@@ -425,7 +484,7 @@ main.final {
 }
 .final .results .info img {
     width: 100%;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
 
 .share span {
@@ -462,9 +521,9 @@ main.final {
     padding: 0.2em 0.5em;
     display: inline-block;
     position: absolute;
-    left: calc(var(--time-pos) - 0.5em);
+    left: var(--time-pos);
     z-index: 2;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateX(-50%);
     top: 2px;
     transition: 0.3s ease;
 }
@@ -571,8 +630,12 @@ main.final {
         right: unset;
     }
     
+    .topbar .exhb-info:hover .pop-box {
+        display: block;
+    }
+    
     main.quiz {
-        grid-template-columns: auto 45vh;
+        grid-template-columns: auto auto;
         grid-template-rows: unset;
     }
     
@@ -593,6 +656,7 @@ main.final {
     .quiz .answers {
         position: static;
         max-width: 25em;
+        width: 45vh;
         bottom: unset;
         left: unset;
         transform: unset;
@@ -688,8 +752,8 @@ main.final {
         height: calc(100vh - var(--topbar-height));
         overflow-y: scroll;
         flex-basis: 50%;
-        margin-top: calc(var(--padding) * -1);
-        margin-bottom: calc(var(--padding) * -1);
+        margin-top: calc(var(--toppadding) * -1);
+        margin-bottom: calc(var(--toppadding) * -1);
         padding-top: var(--padding);
         display: grid;
     }
@@ -721,7 +785,7 @@ main.final {
         cursor: help;
         min-width: 30em;
     }
-    .topbar .exhb-info .pop-box h2, .topbar .exhb-info .pop-box h4, .topbar .exhb-info .pop-box h3{
+    .topbar .exhb-info .pop-box p, .topbar .exhb-info .pop-box h4, .topbar .exhb-info .pop-box h3{
         cursor: auto;
     }
     .topbar .exhb-info .pop-box #closeExhb {

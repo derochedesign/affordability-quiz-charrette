@@ -8,13 +8,13 @@
             "answer": "Despite much progress in gender equality, systemic bias and barriers mean that Canadian women make on average 63 cents for every dollar a man makes. Women also negotiate less than their male counterparts, as women have often been sensitized to think of negotiating as greedy, and don't want to be seen as desperate. A recent study found that 68% of women accepted the salary they were offered and did not negotiate, while only 52% of men did not negotiate.",
             "yes": {
                 "builder": 1,
-                "realist": 3,
-                "seeker": 2
+                "realist": 2,
+                "seeker": 3
             },
             "no": {
-                "builder": 3,
+                "builder": 1,
                 "realist": 2,
-                "seeker": 1
+                "seeker": 3
             }
             
         },
@@ -25,13 +25,13 @@
             "answer": "Subsidizing childcare would mean paying for it from taxes, in the same way that education and healthcare are paid for. These can all be considered investments in our shared future. Additionally, more parents being able to afford childcare would mean more parents being able to return to work and ot having to worry about their entire paycheck going to childcare. More parents working means more people spending money elsewhere in the economy, and not just on childcare. It seems counterintuitive, but subsidizing childcare would benefit our future taxpayers, our fellow employees and our economic bottom line!",
             "yes": {
                 "builder": 1,
-                "realist": 3,
-                "seeker": 2
+                "realist": 2,
+                "seeker": 3
             },
             "no": {
-                "builder": 3,
+                "builder": 1,
                 "realist": 2,
-                "seeker": 1
+                "seeker": 3
             }
         },
         {
@@ -45,9 +45,9 @@
                 "seeker": 2
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
             }
         },
         {
@@ -57,13 +57,13 @@
             "answer": "People living in government subsidized housing are often displaced with total disregard for their needs. This can mean seperating long-standing communities, and often you are simply reassigned recieving little information about the new area or building where you'll live. But what choice do they have if they can't afford a place to live otherwise?",
             "yes": {
                 "builder": 1,
-                "realist": 3,
-                "seeker": 2
+                "realist": 2,
+                "seeker": 3
             },
             "no": {
-                "builder": 3,
+                "builder": 1,
                 "realist": 2,
-                "seeker": 1
+                "seeker": 3
             }
         },
         {
@@ -72,13 +72,13 @@
             "question":"Have you quit your job?",
             "answer": "Studies show that overall labour force participation wouldn't be impacted if Basic Income was implemented. Basic income is typicaly only enough to act as a safety net and cover your basic needs. When people do leave their jobs, it allows them the opportunity to pursue education, entrpreneurship or meaningful employmen, but this has them eventually returning to the workforce in a new capacity. In Alaska, the introduction of their Permanent Fund Dividend (a form of basic income) saw an increased of 17% in part-time jobs worked.",
             "yes": {
-                "builder": 1,
+                "builder": 2,
                 "realist": 3,
-                "seeker": 2
+                "seeker": 1
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
+                "builder": 2,
+                "realist": 3,
                 "seeker": 1
             }
         },
@@ -93,9 +93,9 @@
                 "seeker": 2
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
             }
         },
         {
@@ -104,14 +104,14 @@
             "question":"Would you pay more for it?",
             "answer": "Did you know that products targeted at women are priced 4%-48% more than similar non-gendered or 'male' products, 42% of the time?There are often higher tarrifs charged on products targeted to women and girls, driving up the prices. This effect is called the pink-tax and is one of the ways in which we charge more for the same products without any added value.",
             "yes": {
-                "builder": 1,
-                "realist": 3,
-                "seeker": 2
+                "builder": 2,
+                "realist": 1,
+                "seeker": 3
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 2,
+                "realist": 1,
+                "seeker": 3
             }
         },
         {
@@ -121,13 +121,13 @@
             "answer": "While it may seem unexpected, supporting this kind of density actually brings benefits to you -increased services, shops and amenities in your neighbourhood too. 88% of residents in Toronto are in favor of building more homes as a way to ease housing demands and high prices. However, 52% of peeople would oppose this kind of development in their neighbourhood. When homeowners oppose these kinds of development in order to protect their homes, they might be denying others the same rights and benefits they enjoy as home owners and community members.",
             "yes": {
                 "builder": 1,
-                "realist": 3,
-                "seeker": 2
+                "realist": 2,
+                "seeker": 3
             },
             "no": {
-                "builder": 3,
+                "builder": 1,
                 "realist": 2,
-                "seeker": 1
+                "seeker": 3
             }
         },
         {
@@ -141,9 +141,9 @@
                 "seeker": 2
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
             }
         },
         {
@@ -152,14 +152,14 @@
             "question":"Do you think both of your jobs are safe from automation?",
             "answer": "Counter to popular belief, it's not only blue-collar and factory jobs that are threatened by automation. A whole range of unexpected jobs and industries will be disrupted if we're not prepared.  Robots are proficient, if not better than humans, at the number crunching, inventory tracking and accounts payable. Robo-accounting is on the rise. And although we often assume that jobs that require human skills like creativity are safe, it turns out that AI can write too. The Associated Press started using intelligent software to write earnings reports. It’s possible that written content of the future can be produced without humans at all. Job losss is inevitable, we'd better make it meaningful.",
             "yes": {
-                "builder": 1,
-                "realist": 3,
-                "seeker": 2
+                "builder": 2,
+                "realist": 1,
+                "seeker": 3
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 2,
+                "realist": 1,
+                "seeker": 3
             }
         }
     ]
