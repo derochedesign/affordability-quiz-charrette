@@ -10,5 +10,5 @@ app.use(express.static("./public"));
 
 controller(app);
 
-app.listen(process.env.PORT || port, "192.168.0.26");
+app.listen(process.env.PORT || port, "192.168.1.109");
 console.log(`listening on ${port}`);

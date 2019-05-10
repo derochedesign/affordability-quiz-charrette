@@ -1,22 +1,166 @@
 {
     "questions":[
+        
         {
             "id": 201,
-            "question":"Why do you do that fam?",
-            "answer": "Here is an insight to the question that is non-dependant on your answer",
-            "img": null
+            "scenario":"You happen to know that your co-worker Sally has the same job and experience as you, but makes less than you. You feel you deserve the salary you negotiated.",
+            "question":"Do you think it's fair that Sally makes less?",
+            "answer": "Despite much progress in gender equality, systemic bias and barriers mean that Canadian women make on average 63 cents for every dollar a man makes. Women also negotiate less than their male counterparts, as women have often been sensitized to think of negotiating as greedy, and don't want to be seen as desperate. A recent study found that 68% of women accepted the salary they were offered and did not negotiate, while only 52% of men did not negotiate.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+            
         },
         {
             "id": 202,
-            "question":"2Why do you do that fam?",
-            "answer": "2Here is an insight to the question that is non-dependant on your answer",
-            "img": null
+            "scenario":"In the province where you live, childcare can cost up to 30% of your salary. You don't have children.",
+            "question":"Do you think childcare should be subsidized?",
+            "answer": "Subsidizing childcare would mean paying for it from taxes, in the same way that education and healthcare are paid for. These can all be considered investments in our shared future. Additionally, more parents being able to afford childcare would mean more parents being able to return to work and ot having to worry about their entire paycheck going to childcare. More parents working means more people spending money elsewhere in the economy, and not just on childcare. It seems counterintuitive, but subsidizing childcare would benefit our future taxpayers, our fellow employees and our economic bottom line!",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
         },
         {
             "id": 203,
-            "question":"3Why did you do that fam?",
-            "answer": "3Here is an another insight to the question that is non-dependant on your answer",
-            "img": null
+            "scenario":"You have $4 in change and you're hungry on your way to work. Breakfast costs $1.50, while transit to get to work is $3.25.",
+            "question":" Would you short-change transit so you can eat?",
+            "answer": "Many people living in financially precarity, have to choose between spending $3.25 on a transit POP or a meal. If you're caught without a proof-of-payment, you may face a fine upwards of $400. If you couldn't even afford the $3.25 proof-of-payment, it's going to be next to impossible to pay off that fine. These are the tough and unfair choices that people are forced to make.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 204,
+            "scenario":"You live in government subsidized housing. You recently found out the building where you've lived for 15 years is being demolished.",
+            "question":"Do you think you should have a say in where you're relocated?",
+            "answer": "People living in government subsidized housing are often displaced with total disregard for their needs. This can mean seperating long-standing communities, and often you are simply reassigned recieving little information about the new area or building where you'll live. But what choice do they have if they can't afford a place to live otherwise?",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 205,
+            "scenario":"Its 2025 and it's been one year since a basic income program has been introduced. You get $1000 a month.",
+            "question":"Have you quit your job?",
+            "answer": "Studies show that overall labour force participation wouldn't be impacted if Basic Income was implemented. Basic income is typicaly only enough to act as a safety net and cover your basic needs. When people do leave their jobs, it allows them the opportunity to pursue education, entrpreneurship or meaningful employmen, but this has them eventually returning to the workforce in a new capacity. In Alaska, the introduction of their Permanent Fund Dividend (a form of basic income) saw an increased of 17% in part-time jobs worked.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 206,
+            "scenario":"You plan on owning a home becasue rent is getting more expensive, but the only way you can afford it is by moving an hour away from work. You don't have a car.",
+            "question":"Would you do it?",
+            "answer": "You are certainly not alone, and this is a tough choice to have to make. The trade off for an affordable place to live versus a manageable commute is a common one, but one that is compounded along the lines of race and gender.  In New York the average commute time is 34.8 minutes one way. But when you look closer, you notice that women and minority groups have longer commutes, indicating they are forced to make unfair choices and live even farther from where they work.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 207,
+            "scenario":"You're in the market for a new razor. The pink one is 13% more expensive, but seemingly identical to the black one, although you're not sure.",
+            "question":"Would you pay more for it?",
+            "answer": "Did you know that products targeted at women are priced 4%-48% more than similar non-gendered or 'male' products, 42% of the time?There are often higher tarrifs charged on products targeted to women and girls, driving up the prices. This effect is called the pink-tax and is one of the ways in which we charge more for the same products without any added value.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 208,
+            "scenario":"You're at a community planning meeting and learn about a new mid-rise apartment building being built 3 doors down from your house in your quiet residential neighbourhood. It would house 100 people. You have a chance at the meeting to vote yes or no.",
+            "question":"How do you vote?",
+            "answer": "While it may seem unexpected, supporting this kind of density actually brings benefits to you -increased services, shops and amenities in your neighbourhood too. 88% of residents in Toronto are in favor of building more homes as a way to ease housing demands and high prices. However, 52% of peeople would oppose this kind of development in their neighbourhood. When homeowners oppose these kinds of development in order to protect their homes, they might be denying others the same rights and benefits they enjoy as home owners and community members.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 209,
+            "scenario":"Homelessness has been increasing as the cost of housing and living rises. Roughly 200,000 Canadians experience homelessness each year.",
+            "question":"Do you think the government would save money if they just gave each of them $35,000 dollars a year?",
+            "answer": "Not solving homelessness costs the Canadian economy $7.05 billion annually, which is the equivalent of giving each of those 200,000 people roughly $35,000 a year. This cost includes things like community supports, emergency services, emergency shelters, healthcare and criminial justice. This doesn't account for the social costs. It's not only cheaper, but more humane to house those struggling against unfair circumstances and homelessness.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
+        },
+        {
+            "id": 210,
+            "scenario":"47% of US wokers are set to be replaced by robots. But you're an Accountant and your partner is a journalist.",
+            "question":"Do you think both of your jobs are safe from automation?",
+            "answer": "Counter to popular belief, it's not only blue-collar and factory jobs that are threatened by automation. A whole range of unexpected jobs and industries will be disrupted if we're not prepared.  Robots are proficient, if not better than humans, at the number crunching, inventory tracking and accounts payable. Robo-accounting is on the rise. And although we often assume that jobs that require human skills like creativity are safe, it turns out that AI can write too. The Associated Press started using intelligent software to write earnings reports. It’s possible that written content of the future can be produced without humans at all. Job losss is inevitable, we'd better make it meaningful.",
+            "yes": {
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
+            },
+            "no": {
+                "builder": 3,
+                "realist": 2,
+                "seeker": 1
+            }
         }
     ]
 }

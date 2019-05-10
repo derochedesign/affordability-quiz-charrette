@@ -34,7 +34,7 @@
         },
         {
             "id": 103,
-            "title": "In Place",
+            "title": "InPlace",
             "sub":null,
             "thumb":"projects/inplace/img/thumb.jpg",
             "authors": [
@@ -47,6 +47,26 @@
                 "projects/inplace/img/name.png",
                 "projects/inplace/vid/name.mp4"
             ]
+        }
+    ],
+    "outcomes":[
+        {
+            "title":"Builder",
+            "desc":"when it comes to affordability you have an open mind to see future possibilitties, and you hope to see change. Meliorise is a project that unlock value in existing space with a clever approach to thinking about density and improving neighbourhoods.  Taking advantages of existing resources, MelioRise strives to make communities inclusive, accessible and affordable. Check it out!",
+            "project":102,
+            "img":"seeker.svg"
+        },
+        {
+            "title":"Realist",
+            "desc":"when it comes to affordability you look at things in a pragmatic way. You are not easily fooled and think in a logical manner. You aren't affected by bias and ideologies. InPlace is a project that unlocks value in existing capital, and allows individuals to age in place. Based on research and grounded in reality, InPlace is a feasible strategy to tackle some elements of affordability. Check it out!",
+            "project":103,
+            "img":"seeker.svg"
+        },
+        {
+            "title":"Seeker",
+            "desc":"when it comes to affordability you envision change and your main motivator is to empower the people around you. Boost is a project that unlock value in people, it in order to create continuism aligment between workers and their jobs and make work meaningful in facce of future worker displacement. Check it out!",
+            "project":101,
+            "img":"seeker.svg"
         }
     ]
 }

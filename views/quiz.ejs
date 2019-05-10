@@ -10,36 +10,24 @@
   <body>
     
     <%- include partials/nav.ejs %>
+    <%- include partials/project-pop.ejs %>
     
-    <main class="quiz stage-answer">
+    <main id="main" class="quiz stage-question">
+    <!-- <main class="final"> -->
         
-        <section class="question">
-            <div class="timeline">
-              <div class="base-line">
-                  <div class="marker">
-                    <span>4/10</span>
-                  </div>
-                  <div class="prog-line"></div>
-              </div>
-            </div>
-            <div class="info">
-                <h4>Affordability Quiz</h4>
-                <h1>Homelessness has been increasing as the cost of housing and living rises. Roughly 200,000 Canadians experience homelessness each year. Do you think the government would save money if they just gave each of them $35,000 dollars a year?</h1>
-                <h1 class="insight">Between the ages of 12 and 49, it costs the average Canadian women an estimated $519,976,963 on menstrual hygiene products. That’s expensive! Without access to these products, women and girls are unable to participate in society.Between the ages of 12 and 49, it costs the average Canadian women an estimated $519,976,963 on menstrual hygiene products. That’s expensive! Without access to these products, women and girls are unable to participate in society.
-                </h1>
-            </div>
+        <section id="questionView" class="question">
             
         </section>
         
         <section class="answers">
           <div class="buttons">
-              <button class="button answer">Yes</button>
-              <button class="button answer selected">No</button>
+              <button data-answer="1" class="button answer answerBtns">Yes</button>
+              <button data-answer="0" class="button answer answerBtns">No</button>
           </div>
           
           <div class="next">
-            <h1 class="answer-label">Yes</h1>
-            <button class="button coloured">Next -></button>
+            <h1 id="answerLabel" class="answer-label">Yes</h1>
+            <button id="nextBtn" class="button coloured">Next &#x279D;</button>
           </div>
           
           <div id="slider" class="slide-answer">
@@ -68,6 +56,38 @@
           
         </section>
       
+        <!-- <section class="results">
+          <div class="outcome">
+              <h4>Afford | <span>Results</span></h4>
+              <div class="hero">
+                  <img src="img/art/seeker.svg"></img>
+                  <h1 class="outcome-label">
+                    You are<br> a Seeker.
+                  </h1>
+              </div>
+              <div class="share">
+                <h3 class="coloured">Share Results</h3>
+                <button class="button text">Facebook</button>
+                <span>/</span>
+                <button class="button text">Twitter</button>
+              </div>
+              
+              
+          </div>
+          <div class="info-container">
+            <div class="info">
+              <h3 class="spaced">What does this mean?</h3>
+              <p>As a <span>Seeker</span> when it comes to affordability you envision change and your main motivator is to empower the people around you.</p> 
+              <h3 class="spaced">Explore</h3>
+              <p>Boost is a project that unlocks value in people, in order to create continuism aligment between workers and their jobs and make work meaningful in the face of future worker displacement.</p>
+              <img class="projectSelect" src="img/temp.jpeg" alt="temporary">
+              
+              <button type="button" class="button">Go Again</button>
+            </div>
+          </div>
+          
+        </section> -->
+        
     </main>
     
     <script src="js/main.js" charset="utf-8"></script>
