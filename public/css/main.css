@@ -8,8 +8,6 @@
     --colour-body: white;
     --colour-text: black;
     --colour-text-invert: white;
-    --colour-main: var(--colour-orange);
-    --colour-secondary: var(--colour-lime);;
     
     --colour-magenta: #D8208E;
     --colour-pink: #F6B4D1;
@@ -17,7 +15,7 @@
     --colour-navy: #1A3D7B;
     --colour-lime: #CFE224;
     --colour-forest: #406920;
-    --colour-green: #DFEBB4;
+    --colour-green: #DDEFA1;
     
     --heading: "Heebo", "Graphik", "Avenir", sans-serif;
     --subheading: "Roboto Slab", "Rockwell", serif;
@@ -39,6 +37,7 @@
     
     /* timeline pos */
     --time-pos: 40%;
+    --timeline-transition: 0.5s ease;
     
     /* z-index */
     --z-cursor: 1000;
@@ -262,11 +261,11 @@ main.quiz {
     height: 100%;
     background-color: var(--colour-body);
     overflow: auto;
-    transition: background-color 0.7s ease;
+    /* transition: background-color 0.7s ease; */
 }
 main.quiz section {
     padding: var(--toppadding) var(--padding);
-    transition: background-color 0.7s ease;
+    /* transition: background-color 0.7s ease; */
 }
 .quiz .question {
     width: 100%;
@@ -403,16 +402,16 @@ button.button.coloured {
     height: 100%;
 }
 .quiz .question .info h2 {
-    transition: 0.3s ease;
+    transition: 0.5s ease;
     margin: 1em 0;
 }
 
 .quiz.stage-answer {
-    --colour-main: var(--colour-magenta);
-    --colour-body: var(--colour-main);
+    /* --colour-main: var(--colour-magenta);*/
+    --colour-body: var(--colour-main); 
     --colour-text: var(--colour-white);
     
-    --colour-secondary: var(--colour-lime);
+    /* --colour-secondary: var(--colour-lime); */
 }
 
 .quiz.stage-question .question .info h2 {
@@ -430,7 +429,10 @@ button.button.coloured {
 .quiz.stage-answer .info h2 {
     color: var(--colour-text);
     font-size: 1.2em;
-    font-weight: var(--bold)
+    font-weight: var(--regular);
+}
+.quiz.stage-answer .info p {
+    font-weight: var(--bold);
 }
 .quiz.stage-answer .info p.insight {
     color: var(--colour-secondary);
@@ -511,6 +513,7 @@ main.final {
     background-color: var(--colour-secondary);
     z-index: 1;
     transform: translateY(-50%);
+    transition: var(--timeline-transition);
     top: 2px;
 }
 .timeline .base-line .marker {
@@ -522,10 +525,11 @@ main.final {
     display: inline-block;
     position: absolute;
     left: var(--time-pos);
+    /* recreates elem every time so no anim the time */
     z-index: 2;
     transform: translateY(-50%) translateX(-50%);
     top: 2px;
-    transition: 0.3s ease;
+    transition: var(--timeline-transition);
 }
 
 /* ________________SLIDER STYLES__________________ */
@@ -683,8 +687,8 @@ main.final {
     }
     
     .quiz.stage-question {
-        --colour-main: var(--colour-magenta);
-        --colour-secondary: var(--colour-lime);
+        /* --colour-main: var(--colour-magenta);
+        --colour-secondary: var(--colour-lime); */
     }
     
     .quiz.stage-question button.answer {
@@ -726,7 +730,6 @@ main.final {
     .quiz.stage-answer .info h2 {
         color: var(--colour-white);
         font-size: 1.3em;
-        font-weight: var(--bold);
     }
     .quiz.stage-answer .info p.insight {
         font-size: 1.4em;

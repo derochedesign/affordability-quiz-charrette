@@ -11,12 +11,21 @@ let tally = {
     seeker:0
 }
 
-const colourSets = [
-    {main: `--colour-magenta`, secondary: `--colour-lime`},
-    {main: `--colour-navy`, secondary: `--colour-pink`},
-    {main: `--colour-lime`, secondary: `--colour-navy`},
-    {main: `--colour-green`, secondary: `--colour-orange`}
+const colourSets = [ //put actual rgb vals here and update --main and --secondary with it
+    {main: `var(--colour-magenta)`, secondary: `var(--colour-lime)`},
+    {main: `var(--colour-orange)`, secondary: `var(--colour-navy)`},
+    {main: `var(--colour-navy)`, secondary: `var(--colour-pink)`},
+    {main: `var(--colour-lime)`, secondary: `var(--colour-navy)`},
+    {main: `var(--colour-green)`, secondary: `var(--colour-orange)`}
 ]
+
+// const colourSets = [ //put actual rgb vals here and update --main and --secondary with it
+//     {main: `rgb(216,32,142)`, secondary: `rgb(207,226,36)`},
+//     {main: `rgb(247,80,33)`, secondary: `rgb(26,61,123)`},
+//     {main: `rgb(26,61,123)`, secondary: `rgb(246,180,209)`},
+//     {main: `rgb(207,226,36)`, secondary: `rgb(26,61,123)`},
+//     {main: `rgb(232,247,179)`, secondary: `rgb(247,80,33)`}
+// ]
 
 const mainElem = document.getElementById("main");
 const bodyElem = document.getElementById("body");
@@ -162,6 +171,8 @@ document.addEventListener("DOMContentLoaded", _ => {
             
             //init first question 
             generateQuestion(allQuestions[quesPos], quesPos);
+            root.style.setProperty('--colour-main', colourSets[colourPos].main);
+            root.style.setProperty('--colour-secondary', colourSets[colourPos].secondary);
             
         }
     }
@@ -207,7 +218,6 @@ document.addEventListener("click", e => {
         bodyElem.style.overflow = "auto";
     }
     
-    
 });
 
 const populateProjectPop = id => {
@@ -226,10 +236,6 @@ const nextQuestion = _ => {
     document.querySelectorAll(`[data-answer]`).forEach(ans => ans.classList.remove("selected"));
     
     if (quesPos < allQuestions.length-1) {
-        console.log("fuckin");
-        
-        console.log(allQuestions.length-1);
-        
         quesPos++;
         generateQuestion(allQuestions[quesPos], quesPos);
     }
@@ -238,14 +244,16 @@ const nextQuestion = _ => {
         generateOutcome();
     }
     
-    
-    if (colourPos <= 2) {
+    //colours
+    if (colourPos <= 3) {
         colourPos++;
     }
-    else if (colourPos == 3) {
+    else if (colourPos == 4) {
         colourPos = 0;
     }
     
+    root.style.setProperty('--colour-main', colourSets[colourPos].main);
+    root.style.setProperty('--colour-secondary', colourSets[colourPos].secondary);
     
 }
 
@@ -280,7 +288,8 @@ const handleColours = ans => {
         //yes
     }
     else {
-        
+        root.style.setProperty('--colour-main', colourSets[colourPos].secondary);
+        root.style.setProperty('--colour-secondary', colourSets[colourPos].main);
     }
 }
 
@@ -365,24 +374,15 @@ const questionTemplate = (data, pos) => {
     
     //set css var --time-pos: 40%;
     root.style.setProperty('--time-pos', `${(pos+1)*10}%`);
+    document.getElementById(`markerCounter`).innerHTML = `${pos+1}/10`;
     
     return (
         `
-            <div class="timeline">
-              <div class="base-line">
-                  <div class="marker">
-                    <span>${pos+1}/10</span>
-                  </div>
-                  <div class="prog-line"></div>
-              </div>
-            </div>
-            <div class="info">
-                <h4>Affordability Quiz</h4>
-                <h2>${data.scenario}</h2>
-                <h2>${data.question}</h2>
-                <h3 class="insight-label">Insight</h3>
-                <p class="insight">${data.answer}</p>
-            </div>
+            <h4>Affordability Quiz</h4>
+            <h2>${data.scenario}</h2>
+            <h2>${data.question}</h2>
+            <h3 class="insight-label">Insight</h3>
+            <p class="insight">${data.answer}</p>
         `
     )
 }
