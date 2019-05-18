@@ -2,13 +2,14 @@ let root = document.documentElement;
 
 let allQuestions = [];
 let allProjects = [];
-let quesPos = 0;
-let colourPos = 0; //0,1,2,or 3
+let quesPos = 7;
+let colourPos = 0;
 
 let tally = {
     builder:0,
     realist:0,
-    seeker:0
+    seeker:0,
+    corrects:0
 }
 
 const colourSets = [ //put actual rgb vals here and update --main and --secondary with it
@@ -18,14 +19,6 @@ const colourSets = [ //put actual rgb vals here and update --main and --secondar
     {main: `var(--colour-lime)`, secondary: `var(--colour-navy)`},
     {main: `var(--colour-green)`, secondary: `var(--colour-orange)`}
 ]
-
-// const colourSets = [ //put actual rgb vals here and update --main and --secondary with it
-//     {main: `rgb(216,32,142)`, secondary: `rgb(207,226,36)`},
-//     {main: `rgb(247,80,33)`, secondary: `rgb(26,61,123)`},
-//     {main: `rgb(26,61,123)`, secondary: `rgb(246,180,209)`},
-//     {main: `rgb(207,226,36)`, secondary: `rgb(26,61,123)`},
-//     {main: `rgb(232,247,179)`, secondary: `rgb(247,80,33)`}
-// ]
 
 const mainElem = document.getElementById("main");
 const bodyElem = document.getElementById("body");
@@ -41,6 +34,18 @@ document.addEventListener("DOMContentLoaded", _ => {
            
         allProjects = [...result.projects];
    });
+   
+    if (typeof typeData !== 'undefined') {
+        
+       const shareOutMain = document.getElementById("shareOut");
+       if (typeData == "seeker" || typeData == "builder" || typeData == "realist") {
+            shareOutMain.innerHTML = `<img src="../img/art/${typeData}.svg" alt="The ${typeData}"><h1 class="outcome-label">They are<br> a <span>${typeData}</span>.</h1>`;
+       }
+       else {
+            shareOutMain.innerHTML = `<img class="share-none" src="../img/art/none404.svg"><h1 class="outcome-label">They are<br> a <span>${typeData}</span>?</h1>`;
+       }
+       
+   }
     
     //SLIDER FUNCTIONALITY
     if (document.getElementById("slider")) {
@@ -182,7 +187,6 @@ document.addEventListener("DOMContentLoaded", _ => {
 
 document.addEventListener("click", e => {
     
-    console.log(e.target);
     const exhbPop = document.getElementById("exhbPop");
     const projectPop = document.getElementById("projectPop");
     
@@ -307,6 +311,10 @@ const processOutcome = ans => {
         tally.realist += allQuestions[quesPos].no.realist;
         tally.seeker += allQuestions[quesPos].no.seeker;
     }
+    if (ans == allQuestions[quesPos].correct) {
+        tally.corrects++;
+    }
+    
     console.log(tally);
     
 }
@@ -343,11 +351,12 @@ const resultsTemplate = (data, projects) => {
                     You are<br> a <span>${persona}</span>.
                   </h1>
               </div>
+              <h2>Corrects: ${tally.corrects}/${allQuestions.length}</h2>
               <div class="share">
                 <h3 class="coloured">Share Results</h3>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"><button class="button text">Facebook</button></a>
                 <span>/</span>
-                <a target="_blank" href="https://twitter.com/intent/tweet?text=I'm%20a%20${persona}!%20Find%20out%20what%20you%20are:%20linkhere"><button class="button text">Twitter</button></a>
+                <a target="_blank" href="https://twitter.com/intent/tweet?text=I'm%20a%20${persona}!%20Find%20out%20what%20you%20are:%20http://url.com/share/${persona}"><button class="button text">Twitter</button></a>
               </div>
               
               
@@ -358,11 +367,12 @@ const resultsTemplate = (data, projects) => {
               <p>As a <span>${persona}</span> ${thisOutcome.desc}</p> 
               <h3 class="spaced">Explore</h3>
               <p>${thisOutcome.explore}</p>
-              <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect">Learn More</button>
-              <img src="img/${reccProj.thumb}" alt="${reccProj.title}">
-              
-              <a href="/quiz"><button type="button" class="button">Go Again</button></a>
+              <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect invert">Learn More</button>
+              <div class="try-again">
+                <a href="/quiz"><button type="button" class="button text large">Go Again &#x279D;</button></a>
+              </div>
             </div>
+            
           </div>
           
         </section>
@@ -404,18 +414,21 @@ const projectTemplate = data => {
 }
 
 const projectFullTemplate = data => {
+    
     return (
         `
         <div id="closeProjPop" class="close"><span>&times;</span></div>
         <div class="content">
-            <img src="img/projects/${data.title}/logo.svg" alt="${data.title} logo">
-            <h1>${data.title}</h1>
+            <div class="local-nav">
+                <img class="logo" src="img/projects/${data.title}/logo.svg" alt="${data.title} logo">
+                <div class="download"><h5>Download Booklet</h5><a href="img/projects/${data.title}/booklet.pdf" target="_blank"><button type="button" class="button text">Download</button></a></div>
+                ${(data.link) ? `<div class="link-out"><h5>Website</h5><a href="${data.link}"><button type="button" class="button text">${data.link}</button></a></div>` : ``}
+            </div>
+            
             <h3>Description</h3>
             <p>${data.desc}</p>
             <div class="gallery">
-                <img src="img/projects/boost/img/img1.jpg" alt="gallery image">
-                <img src="img/projects/boost/img/img1.jpg" alt="gallery image"> 
-                <img src="img/projects/boost/img/img1.jpg" alt="gallery image">       
+                ${data.gallery.map(media => `<figure><img src="${media.path}" alt="${media.alt}"><figcaption>${media.sub}</figcaption></figure>`).join('')}     
             </div>
         </div>
         `

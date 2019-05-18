@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Affordability Quiz</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body id="body">
+      
+    <script>
+      var typeData = <%- JSON.stringify(type) %>;
+    </script>
+    
+    <%- include partials/nav.ejs %>
+    <%- include partials/exhb.ejs %>
+    <section id="projectPop" class="project-pop"></section>
+    
+    <main class="share-outcomes final">
+        <section class="results">
+            <div class="outcome">
+                <div id="shareOut" class="hero">
+                </div>
+                
+            </div>
+        </section>
+        <section class="new">
+            <div class="out">
+                <h1>What are you?</h1>
+                <a href="/quiz"><button class="button large coloured">Take Quiz</button></a>
+            </div>
+        </section>
+    </main>
+    
+    <script src="../js/main.js" charset="utf-8"></script>
+  </body>
+</html>

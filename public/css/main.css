@@ -8,6 +8,8 @@
     --colour-body: white;
     --colour-text: black;
     --colour-text-invert: white;
+    --colour-main: var(--colour-navy);
+    --colour-secondary: var(--colour-lime);
     
     --colour-magenta: #D8208E;
     --colour-pink: #F6B4D1;
@@ -15,7 +17,7 @@
     --colour-navy: #1A3D7B;
     --colour-lime: #CFE224;
     --colour-forest: #406920;
-    --colour-green: #DDEFA1;
+    --colour-green: #D6EA94;
     
     --heading: "Heebo", "Graphik", "Avenir", sans-serif;
     --subheading: "Roboto Slab", "Rockwell", serif;
@@ -31,12 +33,14 @@
     
     --topbar-height: 4em;
     
+    --max-width: 70rem;
+    
     --shadow: 0 0 10px 1px rgba(0,0,0,0.3);
     
     --round: 100%;
     
     /* timeline pos */
-    --time-pos: 40%;
+    --time-pos: 100%;
     --timeline-transition: 0.5s ease;
     
     /* z-index */
@@ -126,9 +130,15 @@ nav.topbar {
     padding: 0 3em;
     top: 0;
 }
+nav.topbar.light {
+    background-color: var(--colour-magenta);
+}
 .topbar .logo {
     justify-self: left;
-    width: 5em;
+    width: 7em;
+}
+.topbar.light .logo {
+    filter: invert(1);
 }
 .topbar .exhb-info {
     justify-self: right;
@@ -138,6 +148,9 @@ nav.topbar {
     font-size: 1em;
     color: var(--colour-text);
     line-height: 1;
+}
+.topbar.light .exhb-info h2.label {
+    --colour-text: var(--colour-white);
 }
 .topbar .exhb-info:hover .pop-box {
     display: none;
@@ -171,10 +184,17 @@ nav.topbar {
 main {
     margin-top: var(--topbar-height);
     width: 100%;
+    
 }
 main.landing {
+    background-color: var(--colour-body);
+}
+main .inner-landing {
     display: grid;
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: auto min-content;
+    min-height: calc(100vh - var(--topbar-height));
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 .landing section, .landing footer {
     width: 100%;
@@ -182,9 +202,56 @@ main.landing {
 }
 .landing .hero {
     --colour-text: var(--colour-white);
-    background-color: var(--colour-magenta);
     color: var(--colour-text);
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
 }
+/* .landing .hero .start-quiz {
+    color: var(--colour-black);
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-gap: 1em;
+    align-items: center;
+} */
+.landing .hero .start-quiz p {
+    margin: 0;
+}
+.landing .hero img {
+    width: 100%;
+    display: block;
+    margin-top: 4em;
+}
+.landing .hero .bottom-cut {
+    position: absolute;
+    width: 90vw;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.landing .gallery {
+    width: 100vw;
+    overflow-x: auto; 
+    max-width: var(--max-width);
+}
+.landing .gallery .inner-gallery {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-width: calc(var(--max-width) - calc( var(--padding) * 2 ));
+    max-width: 100em;
+}
+.landing .gallery .module {
+    width: 100%;
+    padding-top: 15%;
+    background-color: white;
+    margin-right: var(--padding);
+}
+.landing .gallery .module:last-child {
+    margin: 0;
+}
+
 .landing .title-header {
     padding: var(--padding);
     padding-bottom: 0;
@@ -198,9 +265,8 @@ main.landing {
     grid-template-rows: 0.5em auto;
     grid-row-gap: 2em;
     margin: 0 auto;
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 100vw;
-    max-width: 70em;
     padding-right: 0;
 }
 .landing .projects .length-indicator {
@@ -234,7 +300,6 @@ main.landing {
 
 .landing .more-info, .landing .title-header, .landing .hero {
     margin: 0 auto;
-    max-width: 70em;
 }
 .landing .more-info button.button.text {
     margin-bottom: 2em;
@@ -261,6 +326,7 @@ main.quiz {
     height: 100%;
     background-color: var(--colour-body);
     overflow: auto;
+    grid-template-rows: minmax(0, 1fr) min-content;
     /* transition: background-color 0.7s ease; */
 }
 main.quiz section {
@@ -269,19 +335,21 @@ main.quiz section {
 }
 .quiz .question {
     width: 100%;
-    height: 100%;
+    /* height: calc(100vh - var(--topbar-height)); */
+    /* height: calc(100vh - 8em); */
     display: grid;
-    grid-template-rows: min-content auto;
-    overflow: auto;
+    grid-template-rows: min-content minmax(0, auto);
+    /* overflow: auto; */
     padding-bottom: 6em;
+    padding-bottom: 0;
 }
 .quiz .answers {
     width: 100%;
     height: auto;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    /* position: fixed; */
+    /* bottom: 0; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
     background-color: var(--colour-body);
     justify-self: right;
 }
@@ -324,6 +392,22 @@ button.button:hover {
     max-width: 10em;
 }
 
+button.button.invert {
+    background-color: var(--colour-text);
+    color: var(--colour-black);
+}
+button.button.invert:hover {
+    background-color: transparent;
+    color: var(--colour-text);
+}
+
+button.button.large {
+    font-size: 1.5em;
+}
+button.button.large span.arrow {
+    font-size: 2.5em;
+}
+
 button.button.text {
     border: none;
     color: var(--colour-text);
@@ -359,7 +443,7 @@ button.button.coloured {
     background-color: var(--colour-white);
     color: var(--colour-text);
     padding: var(--padding);
-    overflow: scroll;
+    overflow: auto;
     display: none;
 }
 .project-pop.active {
@@ -389,6 +473,16 @@ button.button.coloured {
     width: 100%;
     margin: 0 auto;
 }
+.project-pop .content .local-nav {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+}
+.project-pop .content .local-nav div {
+    padding: 1em 0;
+}
+.project-pop .content img.logo {
+    width: 10em;
+}
 .project-pop .content img {
     display: block;
     width: 100%;
@@ -398,11 +492,13 @@ button.button.coloured {
 /* ________________QUESTION STYLING__________________ */
 
 .quiz .question .info {
-    overflow: scroll;
+    overflow: auto;
     height: 100%;
+    margin-right: -1.5em;
+padding-right: 1.5em;
 }
 .quiz .question .info h2 {
-    transition: 0.5s ease;
+    transition: font-size 0.5s ease;
     margin: 1em 0;
 }
 
@@ -460,6 +556,9 @@ main.final {
     margin-left: calc(var(--padding) * -2 );
     transform: rotate(-8deg);
 }
+.final .results .outcome .hero img.share-none {
+    opacity: 0.5;
+}
 .final .results .outcome .hero h1.outcome-label {
     font-size: 13vw;
     position: absolute;
@@ -472,21 +571,36 @@ main.final {
 .final .results .outcome .hero h1.outcome-label span {
     text-transform: capitalize;
 }
-
-.final .results .info {
+.final .results .info-container {
     --colour-text: var(--colour-white);
-
-    background-color: var(--colour-main);
     color: var(--colour-text);
+}
+.final .results .info-container button.projectSelect {
+    margin-bottom: 6em;
+}
+.final .results .info {
+    background-color: var(--colour-main);
     padding: 2em;
     margin-top: 2em;
     margin-right: calc(var(--padding) * -1);
     margin-left: calc(var(--padding) / -2);
     width: calc(100vw - calc(var(--padding) / 2));
+    position: relative;
 }
 .final .results .info img {
     width: 100%;
     margin: 1em 0;
+}
+.final .results .info .try-again {
+    position: absolute;
+    bottom: 0;
+    width: 65%;
+    min-width: 6em;
+    height: 6em;
+    background-color: var(--colour-secondary);
+    display: grid;
+    align-items: center;
+    justify-items: center;
 }
 
 .share span {
@@ -530,6 +644,31 @@ main.final {
     transform: translateY(-50%) translateX(-50%);
     top: 2px;
     transition: var(--timeline-transition);
+}
+
+/* ________________SHARE TYPES STYLES__________________ */
+
+.share-outcomes {
+    display: grid;
+    --colour-secondary: var(--colour-lime);
+}
+.share-outcomes.final .results .outcome {
+    flex-basis: unset;
+}
+.share-outcomes.final .results {
+    display: block;
+}
+.new .out h1 {
+    display: inline-block;
+}
+.new {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin-top: 2em;
+}
+.new .out {
+    text-align: center;
 }
 
 /* ________________SLIDER STYLES__________________ */
@@ -620,6 +759,24 @@ main.final {
         --padding: 3em;
     }
     
+    .quiz .info::-webkit-scrollbar {
+        width: 0.4em;
+    }
+    .quiz .info::-webkit-scrollbar-track {
+        display: none;
+    }
+    .quiz .info::-webkit-scrollbar-thumb {
+        background-color: var(--colour-secondary);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 1em;
+    }
+    .quiz .info::-webkit-scrollbar-thumb:hover {
+        border: 1px solid rgba(255,255,255,0.6);
+    }
+    .quiz .info {
+        scrollbar-color: var(--colour-secondary) transparent;
+    }
+    
     h1, h2 {
         font-size: 2em;
     }
@@ -633,9 +790,27 @@ main.final {
         left: var(--padding);
         right: unset;
     }
+    .project-pop .content .local-nav {
+        display: grid;
+        grid-template-rows: unset;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .project-pop .content .local-nav div {
+        padding: 0;
+        padding-top: 2em;
+    }
     
     .topbar .exhb-info:hover .pop-box {
         display: block;
+    }
+    
+    .landing .hero {
+        width: 70%;
+    }
+    .landing .hero .bottom-cut {
+        width: 40vw;
+        max-width: 46em;
+        min-width: 30em;
     }
     
     main.quiz {
@@ -644,11 +819,14 @@ main.final {
     }
     
     .quiz .question {
-        grid-template-rows: 1fr min-content;
+        grid-template-rows: minmax(0, 1fr) min-content;
+        height: calc(100vh - var(--topbar-height));
         padding: 0;
     }
     .quiz .question .info {
         padding: var(--padding);
+        padding-right: calc(var(--padding) / 2);
+        margin-right: 1.5em;
         max-width: 50em;
     }
     .quiz .question .timeline {
@@ -665,6 +843,8 @@ main.final {
         left: unset;
         transform: unset;
         padding-left: 0;
+        overflow: visible;
+        overflow-y: hidden;
     }
     .quiz .answers .buttons {
         display: block;
@@ -681,6 +861,7 @@ main.final {
         display: grid;
         justify-items: center;
         align-items: center;
+        transform-origin: left;
     }
     .quiz .answers .slide-answer {
         display: none;
@@ -753,12 +934,15 @@ main.final {
     .final .results .info-container {
         width: 100%;
         height: calc(100vh - var(--topbar-height));
-        overflow-y: scroll;
+        overflow-y: auto;
         flex-basis: 50%;
         margin-top: calc(var(--toppadding) * -1);
         margin-bottom: calc(var(--toppadding) * -1);
         padding-top: var(--padding);
         display: grid;
+    }
+    .final .results .info-container button.projectSelect {
+        margin-bottom: 0em;
     }
     .final .results .info {
         width: auto;
@@ -768,6 +952,18 @@ main.final {
         justify-self: center;
     }
     
+    /* ________________SHARE TYPES STYLES__________________ */
+
+    .share-outcomes {
+        grid-template-columns: 1fr 1fr;
+        --colour-secondary: var(--colour-lime);
+    }
+    .new {
+        margin-top: 0;
+    }
+    .new .out h1 {
+        margin-right: 1em;
+    }
     
     
     .topbar .exhb-info {
@@ -775,9 +971,8 @@ main.final {
     }
     .topbar .exhb-info .pop-box {
         position: absolute;
-        background-color: var(--colour-white);
-        color: var(--colour-black);
-        box-shadow: var(--shadow);
+        background-color: var(--colour-secondary);
+        color: var(--colour-white);
         padding: 3em;
         display: none;
         transition: 0.3s ease;
@@ -788,8 +983,9 @@ main.final {
         cursor: help;
         min-width: 30em;
     }
-    .topbar .exhb-info .pop-box p, .topbar .exhb-info .pop-box h4, .topbar .exhb-info .pop-box h3{
+    .topbar .exhb-info .pop-box p, .topbar .exhb-info .pop-box h4, .topbar .exhb-info .pop-box h3, .topbar .exhb-info .pop-box h1 {
         cursor: auto;
+        color: var(--colour-white);
     }
     .topbar .exhb-info .pop-box #closeExhb {
         display: none;

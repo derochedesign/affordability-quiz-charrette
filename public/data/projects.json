@@ -10,10 +10,18 @@
                 "Name Name"
             ],
             "desc": "Boost is a non-profit corporation with the goal of creating integrated strategies in order to insure continuous alignment between workers and their jobs in order to unlock the value in people. With a focus on solving the reoccurring issues surrounding the crisis’ that stem from technological advancements in the workplace. These are things like the automation crisis, the rapid evolution within industries, the skills gap which can cause large amounts of inequality both in terms of skills and critical earnings, the identity crisis that comes with losing a persons career, and the fact that our future is unknown leaving our future uncertain and under planned. Boost does this through utilizing the boost method which focus on innovation for evolvability, education in order to create a more equal distribution of skills in the workplace and human needs in order to empathize and advocate for the workers needs throughout their careers. This will allow companies to focus on the final component which is the work that is critical to the future to ensure the economic stability of people in order to unlock their value.",
-            "link": "https://boostwebsite.com",
+            "link": null,
             "gallery": [
-                "projects/boost/img/name.png",
-                "projects/boost/vid/name.mp4"
+                {
+                    "path":"projects/yellow/img/name.png",
+                    "sub":"This is a subtitle.",
+                    "alt":"System diagram"
+                },
+                {
+                    "path":"projects/yellow/img/name22.png",
+                    "sub":"This is a subtitle2.",
+                    "alt":"System diagram"
+                }
             ]
         },
         {
@@ -28,15 +36,23 @@
             "desc": "Meliorise is a pilot plan to facilitate the discussion of intensifying neighbourhoods and to unlock value in existing land, creating healthy neighbourhoods. Healthy neighbourhoods include a variety of housing choices and the accessibility and opportunities brought by complete communities. We aim to change perceptions about the benefits of density in our neighbourhoods.",
             "link": "https://meliorise.com",
             "gallery": [
-                "projects/yellow/img/name.png",
-                "projects/yellow/vid/name.mp4"
+                {
+                    "path":"projects/yellow/img/name.png",
+                    "sub":"This is a subtitle.",
+                    "alt":"System diagram"
+                },
+                {
+                    "path":"projects/yellow/img/name22.png",
+                    "sub":"This is a subtitle2.",
+                    "alt":"System diagram"
+                }
             ]
         },
         {
             "id": 103,
             "title": "InPlace",
             "sub":null,
-            "thumb":"projects/inplace/img/thumb.jpg",
+            "thumb":"projects/inplace/logo.svg",
             "authors": [
                 "Name Name",
                 "Name Name"
@@ -44,8 +60,16 @@
             "desc": "In Place project is about expanding land holding for public good, creating additional rental; units and gently density of neighbourhood and give the user control to age in place yet giving them opportunity to unlock capital in looked/future assets. In-Place aims to empower community hubs to unlock more land and apartments in the public good, and allow residents to age-in place. Holding land in the public good allows the community to remain in place and protects this complete community, leading to a healthy mix of tenures, incomes, services, businesses, shops, opportunities and people, ultimately creating an affordable neighbourhood that benefits all. We used West Neighbourhood House(WNH) as a case study to study the IN-place model to work best for any community hubs.This program allows the senior to age in place, staying in their home longer not only because some capital is unlocked monthly for them, but also because the home is renovated and maintained to a higher standard. WNH stands to generate some revenue, which they can reinvest in the program, while also maintaining or further densifying the area with new rental units.",
             "link": "https://inplace.org",
             "gallery": [
-                "projects/inplace/img/name.png",
-                "projects/inplace/vid/name.mp4"
+                {
+                    "path":"projects/yellow/img/name.png",
+                    "sub":"This is a subtitle.",
+                    "alt":"System diagram"
+                },
+                {
+                    "path":"projects/yellow/img/name22.png",
+                    "sub":"This is a subtitle2.",
+                    "alt":"System diagram"
+                }
             ]
         }
     ],

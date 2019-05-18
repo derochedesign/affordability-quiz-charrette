@@ -11,5 +11,9 @@ module.exports = function(app) {
   app.get("/quiz", function(req, res) {
     res.render("quiz");
   });
+  
+  app.get("/share/:type", function(req, res) {
+    res.render("outcomes", {type:req.params.type});
+  });
 
 };
