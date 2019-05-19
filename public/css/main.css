@@ -46,7 +46,8 @@
     /* z-index */
     --z-cursor: 1000;
     --z-topbar: 100;
-    --z-propop: 101;
+    --z-sidebar: 101;
+    --z-propop: 102;
 }
 
 * {
@@ -133,9 +134,19 @@ nav.topbar {
 nav.topbar.light {
     background-color: var(--colour-magenta);
 }
-.topbar .logo {
+.topbar .logo, .sidebar .logo {
     justify-self: left;
-    width: 7em;
+    width: 2.5em;
+    transition: 0.3s ease;
+    display: block;
+    cursor: pointer;
+}
+.logo.invert {
+    filter: invert(1);
+}
+.topbar .logo:hover, .sidebar .logo:hover {
+    opacity: 0.8;
+    transform: rotate(-5deg);
 }
 .topbar.light .logo {
     filter: invert(1);
@@ -179,6 +190,55 @@ nav.topbar.light {
     z-index: var(--z-propop);
 }
 
+/* ________________SIDEBAR__________________ */
+
+.sidebar {
+    
+    --colour-text: var(--colour-white);
+    
+    position: fixed;
+    z-index: var(--z-sidebar);
+    bottom: 0;
+    top: 0;
+    left: -100vw;
+    width: 100vw;
+    background-color: #111214;
+    padding: var(--padding);
+    color: var(--colour-text);
+    transition: 0.3s ease;
+}
+.sidebar.active {
+    left: 0;
+}
+.sidebar .logo {
+    margin-bottom: 3em;
+}
+.sidebar .inner-sidebar ul.options {
+    list-style: none;
+    margin-top: 1em;
+}
+.sidebar h6 {
+    margin-top: 2em;
+}
+.sidebar .options li {
+    font-size: 1.6em;
+    font-weight: 800;
+    margin: 0.5em 0;
+    cursor: pointer;
+    line-height: 1;
+}
+.sidebar .options li span {
+    display: inline-block;
+    border-bottom: solid 0.15em transparent;
+}
+.sidebar .options li:hover span {
+    border-bottom-color: var(--colour-text);
+}
+.sidebar a {
+    text-decoration: none;
+    color: var(--colour-text);
+}
+
 /* ________________LAYOUTS__________________ */
 
 main {
@@ -207,13 +267,9 @@ main .inner-landing {
     height: 100%;
     margin: 0 auto;
 }
-/* .landing .hero .start-quiz {
-    color: var(--colour-black);
-    display: grid;
-    grid-template-columns: max-content auto;
-    grid-gap: 1em;
-    align-items: center;
-} */
+.landing .hero .start-quiz {
+    margin-top: 2em;
+}
 .landing .hero .start-quiz p {
     margin: 0;
 }
@@ -394,7 +450,7 @@ button.button:hover {
 
 button.button.invert {
     background-color: var(--colour-text);
-    color: var(--colour-black);
+    color: var(--colour-text-invert);
 }
 button.button.invert:hover {
     background-color: transparent;
@@ -434,6 +490,7 @@ button.button.coloured {
 
 .project-pop {
     --colour-text: var(--colour-black);
+    --colour-text-invert: var(--colour-white);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -445,6 +502,25 @@ button.button.coloured {
     padding: var(--padding);
     overflow: auto;
     display: none;
+}
+.project-pop {
+    --mel-yellow: #F8CE0A;
+    --mel-d-yellow: "Detached Houses";
+    --mel-grey: #E5E5E5;
+    --mel-d-grey: "Street";
+    --mel-orange: #FF5C00;
+    --mel-d-orange: "Triplex, townhouses, and mid-rise";
+    --mel-green: #ADDA48;
+    --mel-d-green: "Open space";
+    --mel-purple: #7167AE;
+    --mel-d-purple: "Multi-purpose buildings";
+    --mel-pink: #F8284C;
+    --mel-d-pink: "Education institutions";
+    
+    --boost-bg: #0B0818;
+    --boost-red: #FF1504;
+    
+    --mel-blue: #15206D;
 }
 .project-pop.active {
     display: block;
@@ -465,28 +541,54 @@ button.button.coloured {
     pointer-events: none;
     cursor: pointer;
 }
-#closeExhb {
-    pointer-events: all;
+
+.project-pop.meliorise {
+    background-color: var(--mel-blue);
+    --colour-text: var(--colour-white);
+    --colour-text-invert: var(--colour-black);
 }
+.project-pop.boost {
+    background-color: var(--boost-bg);
+    --colour-text: var(--colour-white);
+    --colour-text-invert: var(--colour-black);
+}
+.project-pop.boost ::selection {
+    background-color: var(--boost-red);
+}
+.project-pop.boost .gallery img {
+    margin: 0;
+}
+
 .project-pop .content {
     max-width: 50em;
     width: 100%;
     margin: 0 auto;
+    padding-bottom: var(--padding);
+}
+.project-pop .content .desc {
+    white-space: pre-line;
+}
+.project-pop h2 {
+    margin: 1em 0;
 }
 .project-pop .content .local-nav {
     display: grid;
-    grid-template-rows: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    margin-bottom: 1em;
 }
-.project-pop .content .local-nav div {
-    padding: 1em 0;
+.project-pop .content .local-nav .download {
+    align-self: center;
 }
+
 .project-pop .content img.logo {
-    width: 10em;
+    width: 10em
 }
 .project-pop .content img {
     display: block;
-    width: 100%;
     padding: 2em 0;
+}
+.project-pop .gallery img {
+    margin: 0 -3em;
 }
 
 /* ________________QUESTION STYLING__________________ */
@@ -544,7 +646,8 @@ padding-right: 1.5em;
 /* ________________RESULTS STYLING__________________ */
 
 main.final {
-  padding: var(--toppadding) var(--padding);  
+  padding: var(--toppadding) var(--padding);
+  padding-bottom: 0;
 }
 
 .final .results .outcome .hero {
@@ -560,13 +663,13 @@ main.final {
     opacity: 0.5;
 }
 .final .results .outcome .hero h1.outcome-label {
-    font-size: 13vw;
+    font-size: 12vw;
     position: absolute;
     top: 50%;
     transform: translateY(-25%);
     z-index: 1;
     line-height: 1.2;
-    padding-left: 15vw;
+    padding-left: 13vw;
 }
 .final .results .outcome .hero h1.outcome-label span {
     text-transform: capitalize;
@@ -579,12 +682,13 @@ main.final {
     margin-bottom: 6em;
 }
 .final .results .info {
+    --colour-text-invert: var(--colour-black);
     background-color: var(--colour-main);
     padding: 2em;
     margin-top: 2em;
     margin-right: calc(var(--padding) * -1);
     margin-left: calc(var(--padding) / -2);
-    width: calc(100vw - calc(var(--padding) / 2));
+    /* width: calc(100vw - calc(var(--padding) / 2)); */
     position: relative;
 }
 .final .results .info img {
@@ -759,6 +863,13 @@ main.final {
         --padding: 3em;
     }
     
+    /* ________________SIDEBAR__________________ */
+
+    .sidebar {
+        width: 24em;
+        left: -24em;
+    }
+    
     .quiz .info::-webkit-scrollbar {
         width: 0.4em;
     }
@@ -793,11 +904,15 @@ main.final {
     .project-pop .content .local-nav {
         display: grid;
         grid-template-rows: unset;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 0;
     }
     .project-pop .content .local-nav div {
         padding: 0;
         padding-top: 2em;
+    }
+    .project-pop .content .local-nav .download {
+        justify-self: right;
     }
     
     .topbar .exhb-info:hover .pop-box {

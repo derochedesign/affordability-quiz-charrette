@@ -13,9 +13,9 @@
                 "seeker": 3
             },
             "no": {
-                "builder": 2,
-                "realist": 2,
-                "seeker": 1
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
             }
             
         },
@@ -31,9 +31,9 @@
                 "seeker": 3
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
             }
         },
         {
@@ -48,9 +48,9 @@
                 "seeker": 2
             },
             "no": {
-                "builder": 3,
+                "builder": 2,
                 "realist": 1,
-                "seeker": 2
+                "seeker": 3
             }
         },
         {
@@ -65,8 +65,8 @@
                 "seeker": 3
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
+                "builder": 2,
+                "realist": 3,
                 "seeker": 1
             }
         },
@@ -133,9 +133,9 @@
                 "seeker": 3
             },
             "no": {
-                "builder": 3,
-                "realist": 2,
-                "seeker": 1
+                "builder": 1,
+                "realist": 3,
+                "seeker": 2
             }
         },
         {
@@ -150,9 +150,9 @@
                 "seeker": 2
             },
             "no": {
-                "builder": 3,
-                "realist": 1,
-                "seeker": 2
+                "builder": 2,
+                "realist": 3,
+                "seeker": 1
             }
         },
         {

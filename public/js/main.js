@@ -2,7 +2,7 @@ let root = document.documentElement;
 
 let allQuestions = [];
 let allProjects = [];
-let quesPos = 7;
+let quesPos = 0;
 let colourPos = 0;
 
 let tally = {
@@ -193,13 +193,11 @@ document.addEventListener("click", e => {
     if (e.target.matches(".answerBtns")) {
         if (!e.target.classList.contains("selected")) {
             handleQuestions(Number(e.target.dataset.answer));
-            bodyElem.scrollTop = 0;
         }
     }
     
     if (e.target.matches("#nextBtn")) {
-        console.log(quesPos);
-        bodyElem.scrollTop = 0;
+        document.getElementById("questionView").scrollTop = 0;
         nextQuestion();
     }
     
@@ -208,7 +206,7 @@ document.addEventListener("click", e => {
     }
     
     if (e.target.matches("#closeProjPop")) {
-        projectPop.classList.remove("active");
+        projectPop.className = "project-pop";
         bodyElem.style.overflow = "auto";
     }
     
@@ -222,14 +220,20 @@ document.addEventListener("click", e => {
         bodyElem.style.overflow = "auto";
     }
     
+    if (e.target.matches("#openSide") || e.target.matches("#closeSide")) {
+        document.getElementById("sidebar").classList.toggle("active");
+    }
+    
 });
 
 const populateProjectPop = id => {
     
+    let thisProj = allProjects[allProjects.findIndex(project => project.id == id)];
     const projectPop = document.getElementById("projectPop");
     projectPop.classList.add("active");
+    projectPop.classList.add(thisProj.tid);
     bodyElem.style.overflow = "hidden";
-    projectPop.innerHTML = projectFullTemplate(allProjects[allProjects.findIndex(project => project.id == id)]);
+    projectPop.innerHTML = projectFullTemplate(thisProj);
 }
 
 const nextQuestion = _ => {
@@ -269,6 +273,8 @@ const generateQuestion = (qu, pos) => {
 }
 
 const handleQuestions = ans => {
+    // document.getElementById("questionView").scrollTop = insightTop;
+    
     processOutcome(ans);
         
     mainElem.classList.toggle("stage-question");
@@ -285,6 +291,7 @@ const handleQuestions = ans => {
     }
     
     handleColours(ans);
+    document.getElementById("insightLabel").scrollIntoView();
 }
 
 const handleColours = ans => {
@@ -344,14 +351,14 @@ const resultsTemplate = (data, projects) => {
         `
         <section class="results">
           <div class="outcome">
-              <h4>Afford | <span>Results</span></h4>
+              <h4>Perspectives | <span>Results</span></h4>
               <div class="hero">
                   <img src="img/art/${thisOutcome.img}"></img>
                   <h1 class="outcome-label">
-                    You are<br> a <span>${persona}</span>.
+                    You are<br> a <span>${persona}</span>${ (tally.corrects < (allQuestions.length/2)) ? `,*` : `.` }
                   </h1>
               </div>
-              <h2>Corrects: ${tally.corrects}/${allQuestions.length}</h2>
+              
               <div class="share">
                 <h3 class="coloured">Share Results</h3>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"><button class="button text">Facebook</button></a>
@@ -365,6 +372,7 @@ const resultsTemplate = (data, projects) => {
             <div class="info">
               <h3 class="spaced">What does this mean?</h3>
               <p>As a <span>${persona}</span> ${thisOutcome.desc}</p> 
+              ${(tally.corrects < (allQuestions.length/2)) ? `<p>* although we urge you to stay open-minded on understanding other's challenges, decisions, and perspectives.</p>` : ""}
               <h3 class="spaced">Explore</h3>
               <p>${thisOutcome.explore}</p>
               <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect invert">Learn More</button>
@@ -388,10 +396,10 @@ const questionTemplate = (data, pos) => {
     
     return (
         `
-            <h4>Affordability Quiz</h4>
+            <h4>Perspectives on Affordability</h4>
             <h2>${data.scenario}</h2>
             <h2>${data.question}</h2>
-            <h3 class="insight-label">Insight</h3>
+            <h3 id="insightLabel" class="insight-label">Insight</h3>
             <p class="insight">${data.answer}</p>
         `
     )
@@ -420,16 +428,17 @@ const projectFullTemplate = data => {
         <div id="closeProjPop" class="close"><span>&times;</span></div>
         <div class="content">
             <div class="local-nav">
-                <img class="logo" src="img/projects/${data.title}/logo.svg" alt="${data.title} logo">
-                <div class="download"><h5>Download Booklet</h5><a href="img/projects/${data.title}/booklet.pdf" target="_blank"><button type="button" class="button text">Download</button></a></div>
+                ${(data.thumb) ? `<img class="logo" src="img/projects/${data.tid}/logo.svg" alt="${data.title} logo">`: ""}
+                ${(data.thumb) ? `<div class="download"><h5>More Information</h5><a href="img/projects/${data.tid}/${data.tid}-booklet.pdf" target="_blank"><button type="button" class="button text">Get Booklet</button></a></div>` : ``}
                 ${(data.link) ? `<div class="link-out"><h5>Website</h5><a href="${data.link}"><button type="button" class="button text">${data.link}</button></a></div>` : ``}
             </div>
-            
-            <h3>Description</h3>
-            <p>${data.desc}</p>
             <div class="gallery">
-                ${data.gallery.map(media => `<figure><img src="${media.path}" alt="${media.alt}"><figcaption>${media.sub}</figcaption></figure>`).join('')}     
+                ${(data.gallery) ? data.gallery.map(media => `<figure><img src="${`img/${media.path}`}" alt="${media.alt}"><figcaption>${(media.sub) ? media.sub : ""}</figcaption></figure>`).join('') : ""}     
             </div>
+            <h2>Description</h2>
+            <p class="desc">${data.desc}</p>
+            <h2>More Information</h2>
+            ${(data.thumb) ? `<a href="img/projects/${data.tid}/${data.tid}-booklet.pdf" target="_blank"><button type="button" class="button invert">Get Booklet</button></a></div>` : ``}
         </div>
         `
     )
