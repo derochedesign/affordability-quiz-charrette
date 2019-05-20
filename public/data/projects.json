@@ -63,13 +63,34 @@
         {
             "id": 104,
             "title": "Exhibition",
+            "tid": "exhb",
             "sub": null,
             "thumb": null,
             "authors": [
                 "Name Name",
                 "Name Name"
             ],
-            "desc": "<h1>We invite you to our Exhibition!</h1><p>Here's a short description about what this exhibition is about, and why user should go to it.</p><h3>Date</h3><p>May 30th, 2019</p><h3>Location</h3><p>3 Lower Jarvis St.</p>",
+            "desc": "<p>This exhibition is the culmination of a year long research into the causes and factors of unaffordability around the world and in the Toronto Region. This exhibition aims to challenge our current perceptions of value and propose alternative affordable solutions by unlocking existing assets and resources.</p><h3>Date</h3><p>May 30th, 2019. 6-8pm</p><h3>Location</h3><p>3 Lower Jarvis St., Toronto, ON</p><a class='out-link' href='https://www.eventbrite.com/e/iwb-year-end-exhibition-tickets-61444792027?utm_source=eb_email&utm_medium=email&utm_campaign=new_event_email&utm_term=viewmyevent_button&fbclid=IwAR2W-Dl9DKZooo0dLwjrtwsLjxMoAVUfT51klndkrWYtr-HbQUcIKyyMBvA' target='_blank'><button type='button' class='button large coloured'>Eventbrite Page &#x279E;</button></a>",
+            "link": null,
+            "gallery": [
+                {
+                    "path":"projects/exhb/hero.svg",
+                    "sub": null,
+                    "alt":"three values"
+                }
+            ]
+        },
+        {
+            "id": 105,
+            "title": "More Information",
+            "tid": "about",
+            "sub": null,
+            "thumb": null,
+            "authors": [
+                "Name Name",
+                "Name Name"
+            ],
+            "desc": "<h3>Who are we?<h3><p>This year’s cohort of the ​Institute without Boundaries​ (IwB) is comprised of eight women, among whom are two international students from India. Another student was born in Mauritius, and one is from El Salvador. One is a recent immigrant from Iran and is now a Permanent Resident in Canada. Five are women of colour. Our backgrounds and skill sets cover a huge range, making for important learning and collaboration from one another. Collectively, we’ve lived in Mumbai, Hong Kong, rural Ontario, Bucheon, the Kingdom of Bahrain, Dubai, Bangalore, Calgary, Isfahan, Nottingham, San Salvador and now Toronto. Just amongst ourselves, we bring to the table many perspectives on affordability.</p> <h3>Why a quiz?<h3><p>We want to challenge your perceptions of Affordability. There are lot’s of solutions for Affordability, but our perceptions of Affordability as a monetary solution alone are holding us back. The system we’ve designed is limiting choices. Connected to our larger strategies of the ways in which we undervalue and overvalue. We undervalue choice, people! and overvalue merit, capital.</p> <h3>We hope<h3><p>We hope that this quiz and the overall experience of our coming exhibition sparks a dialogue, deepens and challenges your understanding of affordability and most importantly, inspires you to take action with the realization that our perspectives and values are fundamental to achieving a more equitable future.</p>",
             "link": null,
             "gallery": null
         }
@@ -80,21 +101,33 @@
             "desc":"when it comes to affordability, you see future possibilities and actively aim for change.",
             "explore": "Meliorise is a project that unlocks value in existing space with a clever approach to thinking about density and improving neighbourhoods.  Taking advantages of existing resources, MelioRise strives to make communities inclusive, accessible and affordable.",
             "project":102,
-            "img":"seeker.svg"
+            "img":"seeker.svg",
+            "colours":{
+                "main":"var(--colour-orange)",
+                "secondary":"var(--colour-lime)"
+            }
         },
         {
             "title":"realist",
             "desc":"when it comes to affordability, you look at things in a pragmatic way. You are not easily fooled and think in a logical manner. You aren't affected by bias and ideologies.",
             "explore": "InPlace is a project that unlocks value in existing capital, and allows individuals to age in place. Based on research and grounded in reality, InPlace is a feasible strategy to tackle some elements of affordability.",
             "project":103,
-            "img":"seeker.svg"
+            "img":"seeker.svg",
+            "colours":{
+                "main":"var(--colour-orange)",
+                "secondary":"var(--colour-lime)"
+            }
         },
         {
             "title":"seeker",
             "desc":"when it comes to affordability, you envision change and your main motivator is to empower the people around you.",
             "explore": "Boost is a project that unlocks value in people through the creation of a continuism aligment between workers and their jobs, making work meaningful in the face of future worker displacement.",
             "project":101,
-            "img":"seeker.svg"
+            "img":"seeker.svg",
+            "colours":{
+                "main":"var(--colour-orange)",
+                "secondary":"var(--colour-lime)"
+            }
         }
     ]
 }

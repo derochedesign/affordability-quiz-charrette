@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>Affordability Quiz</title>
+    <meta name="theme-color" content="#111214"/>
+    <title>Perspectives | Shared</title>
     <link rel="stylesheet" href="../css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
@@ -15,24 +16,26 @@
     
     <%- include partials/nav.ejs %>
     <%- include partials/exhb.ejs %>
+    <%- include partials/sidebar.ejs %>
     <section id="projectPop" class="project-pop"></section>
     
-    <main class="share-outcomes final">
-        <section class="results">
-            <div class="outcome">
-                <div id="shareOut" class="hero">
+    <div class="outer-outcomes">
+        <main class="share-outcomes final">
+            <section class="results">
+                <div class="outcome">
+                    <div id="shareOut" class="hero">
+                    </div>
+                    
                 </div>
-                
-            </div>
-        </section>
-        <section class="new">
-            <div class="out">
-                <h1>What are you?</h1>
-                <a href="/quiz"><button class="button large coloured">Take Quiz</button></a>
-            </div>
-        </section>
-    </main>
-    
+            </section>
+            <section class="new">
+                <div class="out">
+                    <h1>What are you?</h1>
+                    <a href="/quiz"><button class="button large coloured">Take Quiz</button></a>
+                </div>
+            </section>
+        </main>
+    </div>
     <script src="../js/main.js" charset="utf-8"></script>
   </body>
 </html>

@@ -5,6 +5,7 @@
             "id": 201,
             "scenario":"You happen to know that your co-worker Sally has the same job and experience as you, but makes less than you. You feel you deserve the salary you negotiated.",
             "question":"Do you think it's fair that Sally makes less?",
+            "insightLabel":"Gender Inequality",
             "answer": "Canadian women make on average 63 cents for every dollar a man makes. Women also negotiate less than their male counterparts. A recent study found that 68% of women accepted the salary they were offered and did not negotiate while only 52% of men did not negotiate.",
             "correct":0,
             "yes": {
@@ -23,6 +24,7 @@
             "id": 202,
             "scenario":"In many provinces across Canada, childcare can cost up to 30% of your salary. You don't have children.",
             "question":"Do you think childcare should be subsidized?",
+            "insightLabel":"Childcare",
             "answer": "Subsidizing childcare would mean paying for it from taxes, in the same way that education and healthcare are paid for. Additionally, providing parents with the opportunity to afford childcare would enable them to work and spend money elsewhere in the economy. Subsidizing childcare would benefit our future taxpayers, our fellow employees and our economic bottom line.",
             "correct":1,
             "yes": {
@@ -40,6 +42,7 @@
             "id": 203,
             "scenario":"You have $4 in change and you're hungry on your way to work. Breakfast costs $1.50, while transit to get to work is $3.25.",
             "question":"Would you short-change transit so you can eat?",
+            "insightLabel":"Food Inequality",
             "answer": "Many people living in financially precarity, have to choose between spending $3.25 on a transit POP or a meal. If you're caught without a proof-of-payment, you may face a fine upwards of $400. If you couldn't even afford the $3.25 proof-of-payment, it's going to be next to impossible to pay off that fine. These are the tough and unfair choices that people are forced to make.",
             "correct":null,
             "yes": {
@@ -57,6 +60,7 @@
             "id": 204,
             "scenario":"You live in government subsidized housing. You recently found out the building where you've lived for 15 years is being demolished.",
             "question":"Do you think you should have a say in where you're relocated?",
+            "insightLabel":"Housing",
             "answer": "People living in government subsidized housing are often displaced with complete disregard for their needs. These people are often reassigned and receive little to no information about their new neighbourhood or building. As a result, many long standing communities are displaced. But what choice do they have if they can't afford a place to live otherwise?",
             "correct": 1,
             "yes": {
@@ -74,6 +78,7 @@
             "id": 205,
             "scenario":"It's 2025 and the basic income program has become the norm. You get $1000 a month.",
             "question":"Have you quit your job?",
+            "insightLabel":"Basic Income",
             "answer": "Studies show that overall labour force participation wouldn't be impacted if Basic Income was implemented. Basic income is typically only enough to act as a safety net and cover your basic needs. When people do leave their jobs, it allows them the opportunity to further develop their skills and return to the workforce in a new capacity.",
             "correct":0,
             "yes": {
@@ -91,6 +96,7 @@
             "id": 206,
             "scenario":"You plan on owning a home becasue rent is getting more expensive, but the only way you can afford it is by moving an hour away from work. You don't have a car.",
             "question":"Would you do it?",
+            "insightLabel":"Housing & Commute",
             "answer": "The trade off for an affordable place to live versus a manageable commute is a common one, but one that is compounded along the lines of race and gender. In New York, the average commute time is 34.8 minutes in one direction. But when you look closer, you notice that women and minority groups have longer commutes, indicating they are forced to make unfair choices and live even farther from where they work.",
             "correct":1,
             "yes": {
@@ -108,6 +114,7 @@
             "id": 207,
             "scenario":"You're in the market for a new razor. The pink one is 13% more expensive, but seemingly identical to the black one, although you're not sure.",
             "question":"Would you pay more for it?",
+            "insightLabel":"Gender Inequality",
             "answer": "Did you know products targeted at women are priced 4%-48% more than similar non-gendered or 'male' products, 42% of the time? There are often higher tarrifs charged on products targeted to women and girls, driving up the prices. This effect is called the pink-tax and is one of the ways in which we charge more for the same products without any added value.",
             "correct": 0,
             "yes": {
@@ -125,6 +132,7 @@
             "id": 208,
             "scenario":"You're at a community planning meeting and learn about a new mid-rise apartment building being built 3 doors down from your house in your quiet residential neighbourhood. It would house 100 people. You have a chance at the meeting to vote yes or no.",
             "question":"How do you vote?",
+            "insightLabel":"Gentle Density",
             "answer": "While it may seem unexpected, supporting this kind of density actually brings benefits to you -increased services, shops and amenities in your neighbourhood too. 88% of residents in Toronto are in favor of building more homes as a way to ease housing demands and high prices. However, 52% of peeople would oppose this kind of development in their neighbourhood. When homeowners oppose these kinds of development in order to protect their homes, they might be denying others the same rights and benefits they enjoy as home owners and community members.",
             "correct":1,
             "yes": {
@@ -142,6 +150,7 @@
             "id": 209,
             "scenario":"Homelessness has been increasing as the cost of housing and living rises. Roughly 200,000 Canadians experience homelessness each year.",
             "question":"Do you think the government would save money if they just gave each of them $35,000 dollars a year?",
+            "insightLabel":"Homelessness",
             "answer": "Homelessness costs the Canadian economy $7 billion annually, which is the equivalent of giving 200,000 people roughly $35,000 a year. This cost includes things like community supports, emergency services, emergency shelters, healthcare and criminial justice. This doesn't account for the social costs. It's not only cheaper, but more humane to house those struggling against unfair circumstances and homelessness.",
             "correct":1,
             "yes": {
@@ -159,6 +168,7 @@
             "id": 210,
             "scenario":"By 2035, 47% of US workers are set to be replaced by automation. But you're an accountant and your partner is a journalist.",
             "question":"Do you think both of your jobs are safe from automation?",
+            "insightLabel":"Automation",
             "answer": "Counter to popular belief, it's not only blue-collar and factory jobs that are threatened by automation. A whole range of unexpected jobs and industries will be disrupted if we're not prepared. For example, robo-accounting is on the rise as robots are better than humans at number crunching, inventory tracking and accounts payable. Although we often assume that jobs that require human skills like creativity are safe, it turns out that AI can write too. The Associated Press started using intelligent software to write earnings reports. It’s possible that written content of the future can be produced without humans at all.",
             "correct":0,
             "yes": {

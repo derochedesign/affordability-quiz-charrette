@@ -178,6 +178,7 @@ document.addEventListener("DOMContentLoaded", _ => {
             generateQuestion(allQuestions[quesPos], quesPos);
             root.style.setProperty('--colour-main', colourSets[colourPos].main);
             root.style.setProperty('--colour-secondary', colourSets[colourPos].secondary);
+            // document.querySelector('meta[name=theme-color]').setAttribute("content", colourSets[colourPos].main);
             
         }
     }
@@ -262,6 +263,7 @@ const nextQuestion = _ => {
     
     root.style.setProperty('--colour-main', colourSets[colourPos].main);
     root.style.setProperty('--colour-secondary', colourSets[colourPos].secondary);
+    // document.querySelector('meta[name=theme-color]').setAttribute("content", colourSets[colourPos].main);
     
 }
 
@@ -291,7 +293,8 @@ const handleQuestions = ans => {
     }
     
     handleColours(ans);
-    document.getElementById("insightLabel").scrollIntoView();
+    setTimeout(_ => {document.getElementById("insightLabel").scrollIntoView({behavior: "smooth"})},500);
+    
 }
 
 const handleColours = ans => {
@@ -302,6 +305,7 @@ const handleColours = ans => {
         root.style.setProperty('--colour-main', colourSets[colourPos].secondary);
         root.style.setProperty('--colour-secondary', colourSets[colourPos].main);
     }
+    // document.querySelector('meta[name=theme-color]').setAttribute("content", getComputedStyle(root).getPropertyValue(root.style.getPropertyValue('--colour-secondary').substring(4).slice(0, -1)));
 }
 
 const processOutcome = ans => {
@@ -342,10 +346,12 @@ const generateOutcome = _ => {
 const resultsTemplate = (data, projects) => {
     
     const persona = (Object.keys(tally).reduce((a, b) => tally[a] > tally[b] ? a : b));
-    
     const thisOutcome = data[data.findIndex( dat => persona == dat.title)];
-    
     const reccProj = projects[projects.findIndex( proj => thisOutcome.project == proj.id)];
+    
+    root.style.setProperty('--colour-main', thisOutcome.colours.main);
+    root.style.setProperty('--colour-secondary', thisOutcome.colours.secondary);
+    // document.querySelector('meta[name=theme-color]').setAttribute("content", thisOutcome.colours.main);
     
     return (
         `
@@ -375,7 +381,7 @@ const resultsTemplate = (data, projects) => {
               ${(tally.corrects < (allQuestions.length/2)) ? `<p>* although we urge you to stay open-minded on understanding other's challenges, decisions, and perspectives.</p>` : ""}
               <h3 class="spaced">Explore</h3>
               <p>${thisOutcome.explore}</p>
-              <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect invert">Learn More</button>
+              <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect invert">See Project</button>
               <div class="try-again">
                 <a href="/quiz"><button type="button" class="button text large">Go Again &#x279D;</button></a>
               </div>
@@ -399,7 +405,7 @@ const questionTemplate = (data, pos) => {
             <h4>Perspectives on Affordability</h4>
             <h2>${data.scenario}</h2>
             <h2>${data.question}</h2>
-            <h3 id="insightLabel" class="insight-label">Insight</h3>
+            <h3 id="insightLabel" class="insight-label">${data.insightLabel}</h3>
             <p class="insight">${data.answer}</p>
         `
     )
@@ -435,9 +441,9 @@ const projectFullTemplate = data => {
             <div class="gallery">
                 ${(data.gallery) ? data.gallery.map(media => `<figure><img src="${`img/${media.path}`}" alt="${media.alt}"><figcaption>${(media.sub) ? media.sub : ""}</figcaption></figure>`).join('') : ""}     
             </div>
-            <h2>Description</h2>
+            ${(data.thumb) ? `<h2>Description</h2>`: ""}
             <p class="desc">${data.desc}</p>
-            <h2>More Information</h2>
+            ${(data.thumb) ? `<h2>More Information</h2>`: ""}
             ${(data.thumb) ? `<a href="img/projects/${data.tid}/${data.tid}-booklet.pdf" target="_blank"><button type="button" class="button invert">Get Booklet</button></a></div>` : ``}
         </div>
         `

@@ -247,7 +247,7 @@ main {
     
 }
 main.landing {
-    background-color: var(--colour-body);
+    /* background-color: var(--colour-body); */
 }
 main .inner-landing {
     display: grid;
@@ -261,29 +261,39 @@ main .inner-landing {
     padding: var(--toppadding) var(--padding);
 }
 .landing .hero {
-    --colour-text: var(--colour-white);
     color: var(--colour-text);
     width: 100%;
     height: 100%;
     margin: 0 auto;
 }
+.landing .hero .tagline {
+    display: none;
+    margin-top: 1em;
+}
 .landing .hero .start-quiz {
     margin-top: 2em;
+    --colour-text: var(--colour-white);
 }
 .landing .hero .start-quiz p {
     margin: 0;
 }
+.landing .hero button.text {
+    margin-left: 1.1em;
+    margin-top: 0.6em;
+}
 .landing .hero img {
     width: 100%;
     display: block;
-    margin-top: 4em;
+    margin-top: 2em;
 }
 .landing .hero .bottom-cut {
-    position: absolute;
+    position: fixed;
     width: 90vw;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .landing .gallery {
@@ -501,7 +511,12 @@ button.button.coloured {
     color: var(--colour-text);
     padding: var(--padding);
     overflow: auto;
-    display: none;
+    
+    /* display: none; */
+    transform: scale(0);
+    pointer-events: none;
+    transition: 0.3s ease;
+    opacity: 0;
 }
 .project-pop {
     --mel-yellow: #F8CE0A;
@@ -524,6 +539,9 @@ button.button.coloured {
 }
 .project-pop.active {
     display: block;
+    transform: scale(1);
+    pointer-events: all;
+    opacity: 1;
 }
 .project-pop .close {
     position: fixed;
@@ -557,6 +575,20 @@ button.button.coloured {
 }
 .project-pop.boost .gallery img {
     margin: 0;
+}
+
+.project-pop.exhb {
+    background-color: var(--colour-lime);
+    --colour-text: var(--colour-white);
+    --colour-text-invert: var(--colour-black);
+    --colour-secondary: var(--colour-navy);
+}
+.project-pop.exhb .out-link {
+    margin-top: 1em;
+    position: absolute;
+}
+.project-pop.exhb .out-link button {
+    height: 4em;
 }
 
 .project-pop .content {
@@ -597,7 +629,7 @@ button.button.coloured {
     overflow: auto;
     height: 100%;
     margin-right: -1.5em;
-padding-right: 1.5em;
+    padding-right: 1.5em;
 }
 .quiz .question .info h2 {
     transition: font-size 0.5s ease;
@@ -751,10 +783,16 @@ main.final {
 }
 
 /* ________________SHARE TYPES STYLES__________________ */
-
-.share-outcomes {
+.outer-outcomes {
+    display: grid;
+    align-items: center;
+    height: 100%;
+}
+main.share-outcomes.final {
     display: grid;
     --colour-secondary: var(--colour-lime);
+    margin-top: 0;
+    padding-top: 0;
 }
 .share-outcomes.final .results .outcome {
     flex-basis: unset;
@@ -888,6 +926,7 @@ main.final {
         scrollbar-color: var(--colour-secondary) transparent;
     }
     
+    
     h1, h2 {
         font-size: 2em;
     }
@@ -922,10 +961,16 @@ main.final {
     .landing .hero {
         width: 70%;
     }
+    .landing .hero .tagline {
+        display: block;
+    }
     .landing .hero .bottom-cut {
         width: 40vw;
         max-width: 46em;
         min-width: 30em;
+    }
+    .landing .hero img {
+        margin-top: 4em;
     }
     
     main.quiz {
@@ -1056,9 +1101,6 @@ main.final {
         padding-top: var(--padding);
         display: grid;
     }
-    .final .results .info-container button.projectSelect {
-        margin-bottom: 0em;
-    }
     .final .results .info {
         width: auto;
         margin: 0;
@@ -1108,6 +1150,21 @@ main.final {
 }
 
 @media screen and (min-width: 70em) {
+    
+    p {
+        font-size: 1.3em;
+    }
+    
+    .quiz .question .info {
+        max-width: 70em;
+    }
+    .quiz.stage-question .info h2 {
+        font-size: 2.5em;
+    }
+    .quiz .question .info p.insight {
+        font-size: 2.5em;
+    }
+    
     .final .results .outcome .hero img {
         width: 80%;
         margin-left: calc(var(--padding) / -2);
