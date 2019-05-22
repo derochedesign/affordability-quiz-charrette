@@ -2,9 +2,10 @@ let root = document.documentElement;
 
 let allQuestions = [];
 let allProjects = [];
-let quesPos = 0;
+let quesPos = 0; //question position
 let colourPos = 0;
 
+//running global score for outcomes
 let tally = {
     builder:0,
     realist:0,
@@ -12,7 +13,7 @@ let tally = {
     corrects:0
 }
 
-const colourSets = [ //put actual rgb vals here and update --main and --secondary with it
+const colourSets = [ 
     {main: `var(--colour-magenta)`, secondary: `var(--colour-lime)`},
     {main: `var(--colour-orange)`, secondary: `var(--colour-navy)`},
     {main: `var(--colour-navy)`, secondary: `var(--colour-pink)`},
@@ -25,6 +26,16 @@ const bodyElem = document.getElementById("body");
 
 document.addEventListener("DOMContentLoaded", _ => {
     
+    //"easy out" to setting home page's nav bar different than others
+    if (window.location.pathname == "/") {
+        document.getElementById("topbar").classList.add("light");
+        document.querySelector('meta[name=theme-color]').setAttribute("content", getComputedStyle(root).getPropertyValue('--colour-main'));
+    } 
+    else {
+        document.getElementById("topbar").classList.remove("light");
+    }
+    
+    //get data
     $.getJSON('data/questions.json', function(result) { 
            
          allQuestions = [...result.questions];
@@ -33,8 +44,9 @@ document.addEventListener("DOMContentLoaded", _ => {
     $.getJSON('data/projects.json', function(result) { 
            
         allProjects = [...result.projects];
-   });
+    });
    
+    //using node to get the url information by passing it through a global variable in the outcomes.ejs file.
     if (typeof typeData !== 'undefined') {
         
        const shareOutMain = document.getElementById("shareOut");
@@ -57,7 +69,8 @@ document.addEventListener("DOMContentLoaded", _ => {
         let canSlide = false;
         
         let answer;
-
+        
+        //drop slider grab back to the center, and handle if an answer was selected
         const resetSliderGrab = _ => {
             if (canSlide) {
                 
@@ -86,11 +99,11 @@ document.addEventListener("DOMContentLoaded", _ => {
         };
 
         const sliderLogic = e => {
-            console.log("m2");
-            //get mouse x, consider it 0, then apply difference to sliderGrab
+            //get mouse x, consider it 0, then apply difference to sliderGrab -- conditional for mouse vs touchscreen
             const mouseXog = (e.type == "mousedown") ? e.clientX : e.touches[0].clientX;
             canSlide = true;
             
+            //make sure left of grab is centered everytime
             if (!e.target.style.left) {
                 e.target.style.left = `0px`;
             }
@@ -99,29 +112,29 @@ document.addEventListener("DOMContentLoaded", _ => {
             
             const sliderPosition = ev => {
                 if (canSlide) {
+                    //get new x to compare to old x (Xog)
                     const mouseX = (e.type == "mousedown") ? ev.clientX : ev.touches[0].clientX;
                     
-                    let temp = (mouseX - mouseXog);
-                    (temp < 0) && (temp = temp * -1);
+                    let diff = (mouseX - mouseXog);
                     
-                    if (temp <= ((sliderBar.offsetWidth/2) - (sliderGrab.offsetWidth/2) )) {
-                        e.target.style.left = `${sliderPos + (mouseX - mouseXog)}px`;
+                    if (Math.abs(diff) <= ((sliderBar.offsetWidth/2) - (sliderGrab.offsetWidth/2) )) {
+                        e.target.style.left = `${sliderPos + diff}px`;
                         //tracked SKEW anim
                         // sliderBar.style.transform = `perspective(50em) rotateY(${(mouseX - mouseXog)/-6}deg)`;
                     }
                     
+                    //check right side limits
                     if (rightA.offsetLeft <= sliderGrab.offsetLeft) {
                         rightA.classList.add("selected");
                         rightA.style.transform = `scale(1.2)`;
                         //ANSWERED YES (looping)
-                        console.log("YES");
                         answer = 1;
                     }
+                    //check left side limits
                     else if ( (leftA.offsetLeft + leftA.offsetWidth) >= (sliderGrab.offsetLeft + sliderGrab.offsetWidth) ) {
                         leftA.classList.add("selected");
                         leftA.style.transform = `scale(1.2)`;
                         //ANSWERED NO (looping)
-                        console.log("NO");
                         answer = 0;
                         
                     }
@@ -155,20 +168,7 @@ document.addEventListener("DOMContentLoaded", _ => {
         
     }
     
-    //GENERATE PROJECTS
-    if (document.getElementById("projectView")) {
-        
-        const projectView = document.getElementById("projectView");
-    
-        $.getJSON('data/projects.json', function(result) {
-        
-            result.projects.forEach(project => {
-                projectView.innerHTML += projectTemplate(project); 
-            });
-                
-        });
-    }
-    
+    //general init function
     const init = _ => {
         
         //GENERATE QUESTION
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", _ => {
             generateQuestion(allQuestions[quesPos], quesPos);
             root.style.setProperty('--colour-main', colourSets[colourPos].main);
             root.style.setProperty('--colour-secondary', colourSets[colourPos].secondary);
-            // document.querySelector('meta[name=theme-color]').setAttribute("content", colourSets[colourPos].main);
+            document.querySelector('meta[name=theme-color]').setAttribute("content", null);
             
         }
     }
@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", _ => {
     
 });
 
+//all click events
 document.addEventListener("click", e => {
     
     const exhbPop = document.getElementById("exhbPop");
@@ -199,6 +200,7 @@ document.addEventListener("click", e => {
     
     if (e.target.matches("#nextBtn")) {
         document.getElementById("questionView").scrollTop = 0;
+        document.getElementById("topbar").classList.toggle("light");
         nextQuestion();
     }
     
@@ -239,11 +241,14 @@ const populateProjectPop = id => {
 
 const nextQuestion = _ => {
     
+    //these two classes change all of the css for the difference between question and answer stages of the site (only one ever exists)
     mainElem.classList.toggle("stage-question");
     mainElem.classList.toggle("stage-answer");
     
+    //remove selected class from whichever answer was selected (should only ever be one selected anyway, but safe i guess)
     document.querySelectorAll(`[data-answer]`).forEach(ans => ans.classList.remove("selected"));
     
+    //based on global question position, decide if to give the user the next question, or the serve the outcome
     if (quesPos < allQuestions.length-1) {
         quesPos++;
         generateQuestion(allQuestions[quesPos], quesPos);
@@ -253,17 +258,19 @@ const nextQuestion = _ => {
         generateOutcome();
     }
     
-    //colours
-    if (colourPos <= 3) {
+    //colours position tracking (5 colour sets, 10 questions)
+    if (colourPos <= colourSets.length-2) {
         colourPos++;
     }
-    else if (colourPos == 4) {
+    else if (colourPos == colourSets.length-1) {
         colourPos = 0;
     }
     
+    //set main and secondary colours
     root.style.setProperty('--colour-main', colourSets[colourPos].main);
     root.style.setProperty('--colour-secondary', colourSets[colourPos].secondary);
-    // document.querySelector('meta[name=theme-color]').setAttribute("content", colourSets[colourPos].main);
+    
+    document.querySelector('meta[name=theme-color]').setAttribute("content", null);
     
 }
 
@@ -275,12 +282,13 @@ const generateQuestion = (qu, pos) => {
 }
 
 const handleQuestions = ans => {
-    // document.getElementById("questionView").scrollTop = insightTop;
     
     processOutcome(ans);
         
     mainElem.classList.toggle("stage-question");
     mainElem.classList.toggle("stage-answer");
+    
+    document.getElementById("topbar").classList.toggle("light");
     
     if (ans) {
         //yes; set yes to selected class
@@ -298,20 +306,19 @@ const handleQuestions = ans => {
 }
 
 const handleColours = ans => {
-    if (ans) {
-        //yes
-    }
-    else {
+    if (!ans) {
+        //answered no; flip main and secondary colours
         root.style.setProperty('--colour-main', colourSets[colourPos].secondary);
         root.style.setProperty('--colour-secondary', colourSets[colourPos].main);
     }
-    // document.querySelector('meta[name=theme-color]').setAttribute("content", getComputedStyle(root).getPropertyValue(root.style.getPropertyValue('--colour-secondary').substring(4).slice(0, -1)));
+    
+    document.querySelector('meta[name=theme-color]').setAttribute("content", getComputedStyle(root).getPropertyValue('--colour-main'));
 }
 
 const processOutcome = ans => {
     if (ans) {
         //yes
-        //index allQuestions for current q scores
+        //index allQuestions for current q position scores
         tally.builder += allQuestions[quesPos].yes.builder;
         tally.realist += allQuestions[quesPos].yes.realist;
         tally.seeker += allQuestions[quesPos].yes.seeker;
@@ -326,14 +333,13 @@ const processOutcome = ans => {
         tally.corrects++;
     }
     
-    console.log(tally);
-    
 }
 
 const generateOutcome = _ => {
     let outcomes = [];
     let projects = [];
     
+    //redundant
     $.getJSON('data/projects.json', function(result) {
         outcomes = [...result.outcomes];
         projects = [...result.projects];
@@ -345,13 +351,16 @@ const generateOutcome = _ => {
 
 const resultsTemplate = (data, projects) => {
     
+    //filter object to get the largest value, but return the key, rather than the value 
     const persona = (Object.keys(tally).reduce((a, b) => tally[a] > tally[b] ? a : b));
+    //get the chosen outcomes information (desc, project id, etc)
     const thisOutcome = data[data.findIndex( dat => persona == dat.title)];
+    //index the outcomes projectid with the projects
     const reccProj = projects[projects.findIndex( proj => thisOutcome.project == proj.id)];
     
     root.style.setProperty('--colour-main', thisOutcome.colours.main);
     root.style.setProperty('--colour-secondary', thisOutcome.colours.secondary);
-    // document.querySelector('meta[name=theme-color]').setAttribute("content", thisOutcome.colours.main);
+    document.querySelector('meta[name=theme-color]').setAttribute("content", null);
     
     return (
         `
@@ -396,34 +405,18 @@ const resultsTemplate = (data, projects) => {
 
 const questionTemplate = (data, pos) => {
     
-    //set css var --time-pos: 40%;
+    //sets the progress bar using css var "--time-pos"
     root.style.setProperty('--time-pos', `${(pos+1)*10}%`);
     document.getElementById(`markerCounter`).innerHTML = `${pos+1}/10`;
     
     return (
         `
-            <h4>Perspectives on Affordability</h4>
+            <h4>Perspectives | <span>Quiz</span></h4>
             <h2>${data.scenario}</h2>
             <h2>${data.question}</h2>
             <h3 id="insightLabel" class="insight-label">${data.insightLabel}</h3>
             <p class="insight">${data.answer}</p>
         `
-    )
-}
-  
-const projectTemplate = data => {
-    //<h4>${(data.sub == null) ? "" : data.sub}</h4>
-    return (
-    `
-    <div class="project">
-        <div>
-            <h1>${data.title}</h1>
-            <button data-proj-id="${data.id}" type="button" class="button projectSelect">Explore</button>
-        </div>
-        <p>Boost is an integrated strategy for transitioning workers during the rapid changed caused by automation that is affecting every industry.</p>
-        <img src="img/${data.thumb}" alt="${data.title} thumb">
-    </div>
-    `
     )
 }
 

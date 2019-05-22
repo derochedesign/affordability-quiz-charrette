@@ -8,8 +8,8 @@
     --colour-body: white;
     --colour-text: black;
     --colour-text-invert: white;
-    --colour-main: var(--colour-navy);
-    --colour-secondary: var(--colour-lime);
+    --colour-main: var(--colour-lime);
+    --colour-secondary: var(--colour-navy);
     
     --colour-magenta: #D8208E;
     --colour-pink: #F6B4D1;
@@ -126,13 +126,20 @@ nav.topbar {
     height: var(--topbar-height);
     background-color: var(--colour-white);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr max-content;
     align-items: center;
     padding: 0 3em;
     top: 0;
 }
+nav.topbar svg polygon {
+    pointer-events: none;
+}
 nav.topbar.light {
-    background-color: var(--colour-magenta);
+    background-color: var(--colour-main);
+    --colour-text: var(--colour-secondary);
+}
+nav.topbar.light svg {
+    fill: var(--colour-secondary);
 }
 .topbar .logo, .sidebar .logo {
     justify-self: left;
@@ -147,9 +154,6 @@ nav.topbar.light {
 .topbar .logo:hover, .sidebar .logo:hover {
     opacity: 0.8;
     transform: rotate(-5deg);
-}
-.topbar.light .logo {
-    filter: invert(1);
 }
 .topbar .exhb-info {
     justify-self: right;
@@ -206,6 +210,7 @@ nav.topbar.light {
     padding: var(--padding);
     color: var(--colour-text);
     transition: 0.3s ease;
+    overflow-y: auto;
 }
 .sidebar.active {
     left: 0;
@@ -247,10 +252,12 @@ main {
     
 }
 main.landing {
-    /* background-color: var(--colour-body); */
+    --colour-body: var(--colour-main);
+    background-color: var(--colour-body);
 }
 main .inner-landing {
     display: grid;
+    align-items: center;
     grid-template-rows: auto min-content;
     min-height: calc(100vh - var(--topbar-height));
     max-width: var(--max-width);
@@ -263,12 +270,12 @@ main .inner-landing {
 .landing .hero {
     color: var(--colour-text);
     width: 100%;
-    height: 100%;
     margin: 0 auto;
+    padding-bottom: 7em;
 }
-.landing .hero .tagline {
-    display: none;
-    margin-top: 1em;
+.landing .hero h1 {
+    font-size: 10vw;
+    color: var(--colour-secondary);
 }
 .landing .hero .start-quiz {
     margin-top: 2em;
@@ -276,6 +283,12 @@ main .inner-landing {
 }
 .landing .hero .start-quiz p {
     margin: 0;
+}
+.landing .hero button.square {
+    display: none;
+}
+.landing .hero button.large {
+    display: block;
 }
 .landing .hero button.text {
     margin-left: 1.1em;
@@ -450,6 +463,11 @@ button.button:hover {
     background-color: var(--colour-text);
     color: var(--colour-black);
 }
+
+a {
+    text-decoration: none;
+}
+
 .landing .project button.button:hover {
     background-color: var(--colour-text);
     color: var(--colour-text-invert);
@@ -488,6 +506,20 @@ button.button.text:hover {
 button.button.coloured {
     background-color: var(--colour-secondary);
     border-color: var(--colour-secondary);
+}
+
+button.button.square {
+    width: 5em;
+    height: 5em;
+    background-color: var(--colour-secondary);
+    --colour-text: var(--colour-white);
+    color: var(--colour-text);
+    font-size: 3.5em;
+    border: none;
+    padding: 1em;
+}
+button.button.square:hover {
+    filter: brightness(1.2);
 }
 
 .quiz.stage-answer button.answer:hover {
@@ -959,8 +991,14 @@ main.share-outcomes.final {
     }
     
     .landing .hero {
-        width: 70%;
+        display: grid;
+        height: 100%;
+        grid-gap: var(--padding);
+        grid-template-columns: auto auto;
+        align-items: center;
+        padding-bottom: var(--padding);
     }
+    
     .landing .hero .tagline {
         display: block;
     }
@@ -969,8 +1007,17 @@ main.share-outcomes.final {
         max-width: 46em;
         min-width: 30em;
     }
+    .landing .hero h1 {
+        font-size: 7vw;
+    }
     .landing .hero img {
         margin-top: 4em;
+    }
+    .landing .hero button.square {
+        display: block;
+    }
+    .landing .hero button.large {
+        display: none;
     }
     
     main.quiz {
@@ -1153,6 +1200,15 @@ main.share-outcomes.final {
     
     p {
         font-size: 1.3em;
+    }
+    
+    button.button.square {
+        width: 6em;
+        height: 6em;
+    }
+    
+    .landing .hero h1 {
+        font-size: 5em;
     }
     
     .quiz .question .info {
