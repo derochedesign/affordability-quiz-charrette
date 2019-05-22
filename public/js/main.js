@@ -367,9 +367,9 @@ const resultsTemplate = (data, projects) => {
               
               <div class="share">
                 <h3 class="coloured">Share Results</h3>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"><button class="button text">Facebook</button></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.perspectivesonaffordability.ca/share/${persona}" target="_blank"><button class="button text">Facebook</button></a>
                 <span>/</span>
-                <a target="_blank" href="https://twitter.com/intent/tweet?text=I'm%20a%20${persona}!%20Find%20out%20what%20you%20are:%20http://url.com/share/${persona}"><button class="button text">Twitter</button></a>
+                <a target="_blank" href="https://twitter.com/intent/tweet?text=I'm%20a%20${persona}!%20Find%20out%20what%20you%20are:%20http://www.perspectivesonaffordability.ca/share/${persona}"><button class="button text">Twitter</button></a>
               </div>
               
               
