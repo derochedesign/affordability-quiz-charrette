@@ -24,6 +24,17 @@ const colourSets = [
 const mainElem = document.getElementById("main");
 const bodyElem = document.getElementById("body");
 
+const handleUnload = event => {
+    if (quesPos != 0) {
+        event.preventDefault();
+        event.returnValue = '';
+    }
+}
+
+if (document.getElementById("questionView")) { 
+    window.addEventListener('beforeunload', handleUnload); 
+}
+
 document.addEventListener("DOMContentLoaded", _ => {
     
     //"easy out" to setting home page's nav bar different than others
@@ -103,7 +114,7 @@ document.addEventListener("DOMContentLoaded", _ => {
             const mouseXog = (e.type == "mousedown") ? e.clientX : e.touches[0].clientX;
             canSlide = true;
             
-            //make sure left of grab is centered everytime
+            //make sure left exists
             if (!e.target.style.left) {
                 e.target.style.left = `0px`;
             }
@@ -124,14 +135,14 @@ document.addEventListener("DOMContentLoaded", _ => {
                     }
                     
                     //check right side limits
-                    if (rightA.offsetLeft <= sliderGrab.offsetLeft) {
+                    if (rightA.offsetLeft <= (sliderGrab.offsetLeft + 30)) {
                         rightA.classList.add("selected");
                         rightA.style.transform = `scale(1.2)`;
                         //ANSWERED YES (looping)
                         answer = 1;
                     }
                     //check left side limits
-                    else if ( (leftA.offsetLeft + leftA.offsetWidth) >= (sliderGrab.offsetLeft + sliderGrab.offsetWidth) ) {
+                    else if ( (leftA.offsetLeft + leftA.offsetWidth) >= (sliderGrab.offsetLeft + sliderGrab.offsetWidth - 30) ) {
                         leftA.classList.add("selected");
                         leftA.style.transform = `scale(1.2)`;
                         //ANSWERED NO (looping)
@@ -301,7 +312,7 @@ const handleQuestions = ans => {
     }
     
     handleColours(ans);
-    setTimeout(_ => {document.getElementById("insightLabel").scrollIntoView({behavior: "smooth"})},500);
+    setTimeout(_ => {document.getElementById("insightLabel").scrollIntoView({behavior: "smooth"})},200);
     
 }
 
@@ -336,6 +347,9 @@ const processOutcome = ans => {
 }
 
 const generateOutcome = _ => {
+    
+    window.removeEventListener('beforeunload', handleUnload); 
+    
     let outcomes = [];
     let projects = [];
     
@@ -352,9 +366,13 @@ const generateOutcome = _ => {
 const resultsTemplate = (data, projects) => {
     
     //filter object to get the largest value, but return the key, rather than the value 
-    const persona = (Object.keys(tally).reduce((a, b) => tally[a] > tally[b] ? a : b));
+        // const persona = (Object.keys(tally).reduce((a, b) => tally[a] > tally[b] ? a : b));
+        
+    //ignore above and cheat by choosing random outcome since client ran out of time...
+    const persona = data[Math.floor(Math.random() * 3)].title;
     //get the chosen outcomes information (desc, project id, etc)
     const thisOutcome = data[data.findIndex( dat => persona == dat.title)];
+    
     //index the outcomes projectid with the projects
     const reccProj = projects[projects.findIndex( proj => thisOutcome.project == proj.id)];
     
@@ -366,7 +384,6 @@ const resultsTemplate = (data, projects) => {
         `
         <section class="results">
           <div class="outcome">
-              <h4>Perspectives | <span>Results</span></h4>
               <div class="hero">
                   <img src="img/art/${thisOutcome.img}"></img>
                   <h1 class="outcome-label">
@@ -411,8 +428,7 @@ const questionTemplate = (data, pos) => {
     
     return (
         `
-            <h4>Perspectives | <span>Quiz</span></h4>
-            <h2>${data.scenario}</h2>
+            <h2 class="scenario">${data.scenario}</h2>
             <h2>${data.question}</h2>
             <h3 id="insightLabel" class="insight-label">${data.insightLabel}</h3>
             <p class="insight">${data.answer}</p>
