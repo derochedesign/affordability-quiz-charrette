@@ -409,7 +409,7 @@ const resultsTemplate = (data, projects) => {
               <p>${thisOutcome.explore}</p>
               <button data-proj-id="${reccProj.id}" type="button" class="button projectSelect invert">See Project</button>
               <div class="try-again">
-                <a href="/quiz"><button type="button" class="button text large">Go Again &#x279D;</button></a>
+                <a href="/quiz"><button type="button" class="button text large">Go Again</button></a>
               </div>
             </div>
             
