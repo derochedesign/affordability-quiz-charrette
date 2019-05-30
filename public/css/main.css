@@ -284,7 +284,7 @@ main .inner-landing {
     padding-bottom: 7em;
 }
 .landing .hero h1 {
-    font-size: 10vw;
+    font-size: 8.5vw;
     color: var(--colour-secondary);
 }
 .landing .hero .start-quiz {
@@ -750,7 +750,7 @@ main.final {
     opacity: 0.5;
 }
 .final .results .outcome .hero h1.outcome-label {
-    font-size: 12vw;
+    font-size: 11vw;
     position: absolute;
     top: 50%;
     transform: translateY(-25%);
@@ -1162,7 +1162,7 @@ main.share-outcomes.final {
     }
     .final .results .outcome .hero h1.outcome-label {
         padding-left: 1.3em;
-        font-size: 7vw;
+        font-size: 6vw;
     }
     .final .results .outcome .hero img {
         max-width: 25em;

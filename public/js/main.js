@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", _ => {
     }
     
     //get data
-    $.getJSON('data/questions.json', function(result) { 
+    $.getJSON('../data/questions.json', function(result) { 
            
          allQuestions = [...result.questions];
          init();
     });
-    $.getJSON('data/projects.json', function(result) { 
+    $.getJSON('../data/projects.json', function(result) { 
            
         allProjects = [...result.projects];
     });
@@ -354,7 +354,7 @@ const generateOutcome = _ => {
     let projects = [];
     
     //redundant
-    $.getJSON('data/projects.json', function(result) {
+    $.getJSON('../data/projects.json', function(result) {
         outcomes = [...result.outcomes];
         projects = [...result.projects];
         mainElem.innerHTML = resultsTemplate(outcomes, projects);
